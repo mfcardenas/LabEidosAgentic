@@ -7,6 +7,7 @@
 **Arquitectura dirigida por especificaciones y diseño para la construcción verificada de interfaces de gestión con modelos de lenguaje**
 
 ![Estado](https://img.shields.io/badge/estado-investigación%20·%20fase%201-6e7781)
+[![Licencia](https://img.shields.io/badge/licencia-todos%20los%20derechos%20reservados-b31b1b)](LICENSE)
 ![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
 ![Pydantic](https://img.shields.io/badge/Pydantic-v2-E92063?logo=pydantic&logoColor=white)
@@ -416,6 +417,12 @@ Variables principales en `.env`:
 | `ROUTER_MODEL`, `COMPOSER_MODEL`, `*_REASONING` | Modelos y esfuerzo de razonamiento |
 | `LLM_NUM_CTX`, `LLM_TIMEOUT_MS`, `LOG_PROMPTS` | Contexto, tiempo máximo y registro de prompts |
 | `AZURE_OPENAI_*` | Endpoint, clave, despliegue y versión de API (la clave solo en `.env`) |
+
+---
+
+## Licencia
+
+Copyright © 2026 mfcardenas. Todos los derechos reservados. No se permite ningún uso sin permiso previo por escrito; véase [LICENSE](LICENSE).
 
 ---
 

@@ -2,6 +2,7 @@
   "name": "eidos-client",
   "version": "0.1.0",
   "private": true,
+  "license": "UNLICENSED",
   "type": "module",
   "description": "Renderizador del catálogo Eidos y shell de aplicación (sin conocimiento de dominio).",
   "scripts": {

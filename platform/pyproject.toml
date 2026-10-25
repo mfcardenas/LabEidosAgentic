@@ -7,6 +7,8 @@ name = "eidos-platform"
 version = "0.1.0"
 description = "Plataforma Eidos: construye y mantiene interfaces a partir de entradas humanas con agentes verificados."
 requires-python = ">=3.12"
+license = { text = "Proprietary. All rights reserved. See LICENSE." }
+classifiers = ["License :: Other/Proprietary License", "Private :: Do Not Upload"]
 dependencies = [
   "fastapi>=0.115",
   "uvicorn>=0.30",

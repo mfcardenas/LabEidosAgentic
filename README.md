@@ -7,6 +7,7 @@
 **A specification- and design-driven architecture for the verified construction of business application interfaces with language models**
 
 ![Status](https://img.shields.io/badge/status-research%20·%20phase%201-6e7781)
+[![License](https://img.shields.io/badge/license-all%20rights%20reserved-b31b1b)](LICENSE)
 ![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
 ![Pydantic](https://img.shields.io/badge/Pydantic-v2-E92063?logo=pydantic&logoColor=white)
@@ -420,6 +421,12 @@ Main variables in `.env`:
 | `ROUTER_MODEL`, `COMPOSER_MODEL`, `*_REASONING` | Models and reasoning effort |
 | `LLM_NUM_CTX`, `LLM_TIMEOUT_MS`, `LOG_PROMPTS` | Context size, timeout and prompt logging |
 | `AZURE_OPENAI_*` | Endpoint, key, deployment and API version (the key goes only in `.env`) |
+
+---
+
+## License
+
+Copyright © 2026 mfcardenas. All rights reserved. No use of any kind is permitted without prior written permission; see [LICENSE](LICENSE).
 
 ---
 
