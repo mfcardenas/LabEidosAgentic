@@ -1,0 +1,35 @@
+- id: sala.crear
+  tipo: crear
+  entidad: Sala
+  etiqueta: Crear sala
+  requisitos: [REQ-002]
+  despues: { vista: sala.detail, con: id }
+
+- id: sala.actualizar
+  tipo: actualizar
+  entidad: Sala
+  requisitos: [REQ-002]
+  despues: { vista: sala.detail, con: id }
+
+- id: reserva.crear
+  tipo: crear
+  entidad: Reserva
+  etiqueta: Reservar
+  requisitos: [REQ-004]
+  reglas: [salaSinSolape]
+  despues: { vista: reserva.detail, con: id }
+
+- id: reserva.actualizar
+  tipo: actualizar
+  entidad: Reserva
+  requisitos: [REQ-005]
+  reglas: [salaSinSolape]
+  despues: { vista: reserva.detail, con: id }
+
+- id: reserva.eliminar
+  tipo: eliminar
+  entidad: Reserva
+  etiqueta: Anular reserva
+  requisitos: [REQ-005]
+  confirmacion: true
+  despues: { vista: reserva.list, con: ninguno }

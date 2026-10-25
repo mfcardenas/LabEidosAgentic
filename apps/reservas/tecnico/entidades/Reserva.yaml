@@ -1,0 +1,25 @@
+entidad: Reserva
+etiqueta: reserva
+plural: reservas
+genero: f
+campoTitulo: titulo
+orden: inicio
+campos:
+  titulo:      { tipo: texto, etiqueta: Motivo, requerido: true, min: 3, max: 80 }
+  sala:        { tipo: referencia, etiqueta: Sala, entidad: Sala, requerido: true }
+  responsable: { tipo: email, etiqueta: Responsable, requerido: true, minusculas: true, sensible: true }
+  inicio:      { tipo: fechahora, etiqueta: Inicio, requerido: true }
+  fin:         { tipo: fechahora, etiqueta: Fin, requerido: true }
+  estado:
+    tipo: enum
+    etiqueta: Estado
+    porDefecto: confirmada
+    valores:
+      - { valor: confirmada, etiqueta: Confirmada, tono: good }
+      - { valor: provisional, etiqueta: Provisional, tono: warn }
+metricas:
+  total:        { tipo: conteo, etiqueta: Reservas }
+  confirmadas:  { tipo: conteo, etiqueta: Confirmadas, donde: { estado: confirmada } }
+  provisionales: { tipo: conteo, etiqueta: Provisionales, donde: { estado: provisional } }
+  porSala:      { tipo: reparto, etiqueta: Por sala, campo: sala }
+reglas: [salaSinSolape]

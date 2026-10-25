@@ -1,0 +1,86 @@
+name: eidos
+
+x-eidos: &eidos
+  build: .
+  image: eidos-local:latest
+  init: true
+  restart: unless-stopped
+  # Solo accesible desde esta máquina: la app no tiene autenticación.
+  ports:
+    - "127.0.0.1:${PORT:-3000}:3000"
+  extra_hosts:
+    - "host.docker.internal:host-gateway"
+  volumes:
+    - eidos-data:/app/data
+    - ./specs:/app/specs:ro
+  environment:
+    HOST: 0.0.0.0
+    PORT: 3000
+    LLM_PROVIDER: ${LLM_PROVIDER:-ollama}
+    # Dentro del contenedor "localhost" es el propio contenedor: el modelo corre en el host.
+    LLM_BASE_URL: ${DOCKER_LLM_BASE_URL:-http://host.docker.internal:11434}
+    LLM_API_KEY: ${LLM_API_KEY:-}
+    ROUTER_MODEL: ${ROUTER_MODEL:-gpt-oss:20b}
+    COMPOSER_MODEL: ${COMPOSER_MODEL:-gpt-oss:20b}
+    ROUTER_REASONING: ${ROUTER_REASONING:-low}
+    COMPOSER_REASONING: ${COMPOSER_REASONING:-medium}
+    LLM_NUM_CTX: ${LLM_NUM_CTX:-16384}
+    LLM_TEMPERATURE: ${LLM_TEMPERATURE:-}
+    LLM_JSON_MODE: ${LLM_JSON_MODE:-false}
+    LLM_TIMEOUT_MS: ${LLM_TIMEOUT_MS:-600000}
+    LOG_PROMPTS: ${LOG_PROMPTS:-false}
+    DB_FILE: data/eidos.db
+    SEED: ${SEED:-true}
+    LLM_PROFILE: ${LLM_PROFILE:-local}
+    AZURE_OPENAI_ENDPOINT: ${AZURE_OPENAI_ENDPOINT:-}
+    AZURE_OPENAI_API_KEY: ${AZURE_OPENAI_API_KEY:-}
+    AZURE_OPENAI_API_VERSION: ${AZURE_OPENAI_API_VERSION:-2024-12-01-preview}
+    AZURE_OPENAI_CHAT_DEPLOYMENT: ${AZURE_OPENAI_CHAT_DEPLOYMENT:-}
+
+services:
+  # Prototipo F0 (Node), opt-in hasta su retirada: ./start.ps1 -Prototipo
+  eidos:
+    <<: *eidos
+    profiles: ["prototipo"]
+
+  # Prototipo con modelo simulado: ./start.ps1 -Demo
+  eidos-demo:
+    <<: *eidos
+    profiles: ["demo"]
+    command: ["node", "scripts/demo.js"]
+
+  # Plataforma Eidos (servicio por defecto): ./start.ps1  |  ./start.sh
+  plataforma:
+    build:
+      context: .
+      dockerfile: Dockerfile.platform
+    image: eidos-platform:latest
+    init: true
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${PLATFORM_PORT:-8000}:8000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - eidos-platform-data:/data
+      # Las entradas humanas se montan desde el repositorio: editar y reconstruir con `eidos build`.
+      - ./apps:/apps:ro
+    environment:
+      EIDOS_PROFILE: ${EIDOS_PROFILE:-fake}
+      LLM_PROVIDER: ${LLM_PROVIDER:-ollama}
+      LLM_BASE_URL: ${DOCKER_LLM_BASE_URL:-http://host.docker.internal:11434}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      ROUTER_MODEL: ${ROUTER_MODEL:-gpt-oss:20b}
+      COMPOSER_MODEL: ${COMPOSER_MODEL:-gpt-oss:20b}
+      ROUTER_REASONING: ${ROUTER_REASONING:-low}
+      COMPOSER_REASONING: ${COMPOSER_REASONING:-medium}
+      LLM_NUM_CTX: ${LLM_NUM_CTX:-16384}
+      LLM_TIMEOUT_MS: ${LLM_TIMEOUT_MS:-600000}
+      AZURE_OPENAI_ENDPOINT: ${AZURE_OPENAI_ENDPOINT:-}
+      AZURE_OPENAI_API_KEY: ${AZURE_OPENAI_API_KEY:-}
+      AZURE_OPENAI_API_VERSION: ${AZURE_OPENAI_API_VERSION:-2024-12-01-preview}
+      AZURE_OPENAI_CHAT_DEPLOYMENT: ${AZURE_OPENAI_CHAT_DEPLOYMENT:-}
+
+volumes:
+  eidos-data:
+  eidos-platform-data:

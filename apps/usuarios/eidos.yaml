@@ -1,0 +1,11 @@
+id: usuarios
+nombre: Usuarios
+contrato: eidos-inputs/1
+idioma: es-ES
+proposito: Gestionar las personas con acceso a una herramienta interna, sus roles y su estado.
+inicio: user.list
+sugerencias:
+  - { etiqueta: Inicio, vista: user.list }
+  - { etiqueta: Nuevo usuario, vista: user.create }
+  - { etiqueta: Solo admins, texto: "muéstrame solo los admins" }
+  - { etiqueta: Inactivos, texto: "¿quién está inactivo?" }

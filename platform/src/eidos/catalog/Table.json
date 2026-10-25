@@ -1,0 +1,24 @@
+{
+  "$id": "eidos-catalog/1/Table",
+  "title": "Table",
+  "description": "Tabla de registros. Las columnas son campos del registro; la fila puede abrir otra vista.",
+  "x-eidos": { "version": "1.0.0", "container": false, "usage": ["rows: {\"path\": \"/items\"}", "format person en el campo título", "En rowAction, la fila es /row (p. ej. {\"path\": \"/row/id\"})"] },
+  "type": "object",
+  "required": ["id", "component", "rows", "columns"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "$ref": "#/$defs/Id" },
+    "component": { "const": "Table" },
+    "rows": { "$ref": "#/$defs/Path" },
+    "columns": {
+      "type": "array", "minItems": 1, "maxItems": 8,
+      "items": {
+        "type": "object", "required": ["field", "label"], "additionalProperties": false,
+        "properties": { "field": { "type": "string" }, "label": { "type": "string" }, "format": { "$ref": "#/$defs/Format" } }
+      }
+    },
+    "rowAction": { "$ref": "#/$defs/Navigate" },
+    "empty": { "type": "string" },
+    "visible": { "$ref": "#/$defs/Condition" }
+  }
+}

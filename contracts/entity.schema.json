@@ -1,0 +1,291 @@
+{
+  "$defs": {
+    "EnumValue": {
+      "additionalProperties": false,
+      "properties": {
+        "valor": {
+          "title": "Valor",
+          "type": "string"
+        },
+        "etiqueta": {
+          "title": "Etiqueta",
+          "type": "string"
+        },
+        "tono": {
+          "default": "neutral",
+          "enum": [
+            "neutral",
+            "accent",
+            "info",
+            "good",
+            "warn",
+            "bad"
+          ],
+          "title": "Tono",
+          "type": "string"
+        }
+      },
+      "required": [
+        "valor",
+        "etiqueta"
+      ],
+      "title": "EnumValue",
+      "type": "object"
+    },
+    "FieldSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "tipo": {
+          "enum": [
+            "texto",
+            "email",
+            "enum",
+            "booleano",
+            "fecha",
+            "fechahora",
+            "numero",
+            "referencia"
+          ],
+          "title": "Tipo",
+          "type": "string"
+        },
+        "etiqueta": {
+          "title": "Etiqueta",
+          "type": "string"
+        },
+        "requerido": {
+          "default": false,
+          "title": "Requerido",
+          "type": "boolean"
+        },
+        "min": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Min"
+        },
+        "max": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max"
+        },
+        "unico": {
+          "default": false,
+          "title": "Unico",
+          "type": "boolean"
+        },
+        "minusculas": {
+          "default": false,
+          "title": "Minusculas",
+          "type": "boolean"
+        },
+        "porDefecto": {
+          "default": null,
+          "title": "Pordefecto"
+        },
+        "soloLectura": {
+          "default": false,
+          "title": "Sololectura",
+          "type": "boolean"
+        },
+        "auto": {
+          "anyOf": [
+            {
+              "const": "alCrear",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Auto"
+        },
+        "valores": {
+          "items": {
+            "$ref": "#/$defs/EnumValue"
+          },
+          "title": "Valores",
+          "type": "array"
+        },
+        "entidad": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Entidad"
+        },
+        "sensible": {
+          "default": false,
+          "title": "Sensible",
+          "type": "boolean"
+        },
+        "si": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Si"
+        },
+        "no": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "No"
+        }
+      },
+      "required": [
+        "tipo",
+        "etiqueta"
+      ],
+      "title": "FieldSpec",
+      "type": "object"
+    },
+    "MetricSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "tipo": {
+          "enum": [
+            "conteo",
+            "recientes",
+            "reparto"
+          ],
+          "title": "Tipo",
+          "type": "string"
+        },
+        "etiqueta": {
+          "title": "Etiqueta",
+          "type": "string"
+        },
+        "donde": {
+          "additionalProperties": true,
+          "title": "Donde",
+          "type": "object"
+        },
+        "campo": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Campo"
+        },
+        "dias": {
+          "default": 30,
+          "title": "Dias",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "tipo",
+        "etiqueta"
+      ],
+      "title": "MetricSpec",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "entidad": {
+      "pattern": "^[A-Z][A-Za-z0-9]*$",
+      "title": "Entidad",
+      "type": "string"
+    },
+    "etiqueta": {
+      "title": "Etiqueta",
+      "type": "string"
+    },
+    "plural": {
+      "title": "Plural",
+      "type": "string"
+    },
+    "genero": {
+      "default": "m",
+      "enum": [
+        "m",
+        "f"
+      ],
+      "title": "Genero",
+      "type": "string"
+    },
+    "campoTitulo": {
+      "title": "Campotitulo",
+      "type": "string"
+    },
+    "orden": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Orden"
+    },
+    "campos": {
+      "additionalProperties": {
+        "$ref": "#/$defs/FieldSpec"
+      },
+      "title": "Campos",
+      "type": "object"
+    },
+    "metricas": {
+      "additionalProperties": {
+        "$ref": "#/$defs/MetricSpec"
+      },
+      "title": "Metricas",
+      "type": "object"
+    },
+    "reglas": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Reglas",
+      "type": "array"
+    }
+  },
+  "required": [
+    "entidad",
+    "etiqueta",
+    "plural",
+    "campoTitulo",
+    "campos"
+  ],
+  "title": "EntitySpec",
+  "type": "object"
+}

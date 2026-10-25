@@ -1,0 +1,42 @@
+- id: user.list
+  titulo: Usuarios
+  descripcion: Listado de las personas con acceso, con filtro por rol, estado, departamento o texto.
+  patron: collection
+  entidad: Usuario
+  requisitos: [REQ-001, REQ-002]
+  parametros: { filtro: true }
+
+- id: user.detail
+  titulo: Ficha de usuario
+  descripcion: Todos los datos de un usuario, con acceso a editarlo y darlo de baja.
+  patron: record
+  entidad: Usuario
+  requisitos: [REQ-004]
+  parametros: { id: true }
+
+- id: user.create
+  titulo: Nuevo usuario
+  descripcion: Alta de una persona con acceso a la herramienta.
+  patron: form
+  entidad: Usuario
+  comando: usuario.crear
+  requisitos: [REQ-003]
+  parametros: { prefill: true }
+
+- id: user.edit
+  titulo: Editar usuario
+  descripcion: Cambio de datos, rol o estado de un usuario.
+  patron: form
+  entidad: Usuario
+  comando: usuario.actualizar
+  requisitos: [REQ-004]
+  parametros: { id: true, prefill: true }
+
+- id: user.delete
+  titulo: Dar de baja
+  descripcion: Confirmación de la baja de un usuario.
+  patron: confirm
+  entidad: Usuario
+  comando: usuario.eliminar
+  requisitos: [REQ-005]
+  parametros: { id: true }

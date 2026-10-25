@@ -1,0 +1,31 @@
+# Plataforma Eidos (Python) + renderizador (TypeScript). Ver docs/02-arquitectura.md.
+FROM node:24-alpine AS client
+WORKDIR /client
+COPY client/package.json client/package-lock.json* ./
+RUN npm install --no-audit --no-fund
+COPY client/ ./
+RUN npm run build
+
+FROM python:3.12-slim
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    EIDOS_HOST=0.0.0.0 \
+    EIDOS_PORT=8000 \
+    EIDOS_APPS_DIR=/apps \
+    EIDOS_DATA_DIR=/data \
+    EIDOS_CLIENT_DIR=/srv/client \
+    EIDOS_CONTRACTS_DIR=/data/contracts
+WORKDIR /srv
+COPY platform/pyproject.toml platform/
+COPY platform/src platform/src
+RUN pip install --no-cache-dir ./platform \
+ && useradd --system --uid 10001 eidos \
+ && mkdir -p /data && chown eidos /data
+COPY --from=client /client/dist /srv/client
+COPY apps /apps
+USER eidos
+VOLUME ["/data"]
+EXPOSE 8000
+HEALTHCHECK --interval=15s --timeout=5s --start-period=10s --retries=3 \
+  CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/apps', timeout=3)"
+CMD ["eidos", "serve"]

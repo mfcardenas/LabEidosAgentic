@@ -1,0 +1,10 @@
+[
+  { "id": "u01", "nombre": "Lucía Ferrer", "email": "lucia.ferrer@ejemplo.com", "rol": "admin", "departamento": "Operaciones", "activo": true, "alta": "2025-11-04" },
+  { "id": "u02", "nombre": "Andrés Molina", "email": "andres.molina@ejemplo.com", "rol": "editor", "departamento": "Producto", "activo": true, "alta": "2026-01-19" },
+  { "id": "u03", "nombre": "Carmen Ruiz", "email": "carmen.ruiz@ejemplo.com", "rol": "lector", "departamento": "Finanzas", "activo": false, "alta": "2025-06-30" },
+  { "id": "u04", "nombre": "Javier Ortega", "email": "javier.ortega@ejemplo.com", "rol": "editor", "departamento": "Marketing", "activo": true, "alta": "2026-09-28" },
+  { "id": "u05", "nombre": "Nerea Gil", "email": "nerea.gil@ejemplo.com", "rol": "lector", "departamento": "Producto", "activo": true, "alta": "2026-10-08" },
+  { "id": "u06", "nombre": "Tomás Vidal", "email": "tomas.vidal@ejemplo.com", "rol": "admin", "departamento": "Tecnología", "activo": true, "alta": "2025-03-12" },
+  { "id": "u07", "nombre": "Sara Domínguez", "email": "sara.dominguez@ejemplo.com", "rol": "lector", "departamento": "Marketing", "activo": false, "alta": "2026-02-21" },
+  { "id": "u08", "nombre": "Iker Santos", "email": "iker.santos@ejemplo.com", "rol": "editor", "departamento": "Tecnología", "activo": true, "alta": "2026-05-07" }
+]

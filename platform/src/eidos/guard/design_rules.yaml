@@ -1,0 +1,6 @@
+# Reglas de diseño por defecto del guardián (capa 3). Una aplicación puede ajustarlas en diseno/reglas.yaml.
+max_nodos: 40
+una_accion_primaria: true
+destructivo_solo_en: [confirm]
+formulario_solo_en: [form]
+raiz_permitidos: [Card, Columns, Alert, Empty, Text, Button, Stat, Table, KeyValue, BarList]

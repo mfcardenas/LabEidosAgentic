@@ -1,0 +1,18 @@
+{
+  "$id": "eidos-catalog/1/Stat",
+  "title": "Stat",
+  "description": "Métrica destacada con etiqueta.",
+  "x-eidos": { "version": "1.0.0", "container": false, "usage": ["value enlazado a /stats/<métrica>", "hint para contexto (\"últimos 30 días\")"] },
+  "type": "object",
+  "required": ["id", "component", "label", "value"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "$ref": "#/$defs/Id" },
+    "component": { "const": "Stat" },
+    "label": { "type": "string" },
+    "value": { "$ref": "#/$defs/Value" },
+    "hint": { "type": "string" },
+    "tone": { "$ref": "#/$defs/Tone" },
+    "visible": { "$ref": "#/$defs/Condition" }
+  }
+}

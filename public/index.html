@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Eidos Usuarios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><b>Eidos</b><span id="appName"></span><span class="tech-only" id="specVer"></span></div>
+    <button class="status tech-only" id="status" type="button" title="Comprobar el modelo"><i></i><span>Comprobando modelo…</span></button>
+    <nav class="tabs tech-only" role="tablist" aria-label="Secciones">
+      <button role="tab" id="t-app" aria-selected="true" data-tab="app">App</button>
+      <button role="tab" id="t-specs" aria-selected="false" data-tab="specs">Specs</button>
+      <button role="tab" id="t-arq" aria-selected="false" data-tab="arq">Arquitectura</button>
+    </nav>
+    <a class="tbtn tech-only" href="/admin.html">Administración</a>
+    <button class="tbtn techbtn" id="techBtn" type="button" aria-pressed="false" title="Muestra los agentes, las plantillas y las specs que hay detrás de la app">Vista técnica</button>
+  </div>
+</header>
+
+<main>
+  <section id="tab-app" class="panel wrap" role="tabpanel" aria-labelledby="t-app">
+    <div class="banner" id="banner" hidden></div>
+    <div class="app-grid">
+      <div style="min-width:0">
+        <div class="stagebar">
+          <button class="tbtn" id="backBtn" type="button" hidden>← Atrás</button>
+          <div class="prov tech-only" id="prov"></div>
+          <span class="spacer"></span>
+          <button class="tbtn tech-only" id="jsonBtn" type="button" hidden>Ver JSON</button>
+          <button class="tbtn tech-only" id="regenBtn" type="button" hidden>Regenerar plantilla</button>
+        </div>
+        <p class="note" id="note" hidden></p>
+        <div class="stage" id="stage">
+          <div id="screen">
+            <div class="sys"><div class="working"><span class="dots"><i></i><i></i><i></i></span> Cargando</div></div>
+          </div>
+          <pre class="json tech-only" id="screenJson" hidden></pre>
+        </div>
+      </div>
+      <aside class="trace tech-only" aria-label="Traza de agentes">
+        <h3>Agentes</h3>
+        <p class="sub">Qué hizo cada uno. Lo más reciente arriba.</p>
+        <ul class="legend">
+          <li class="k-router"><span class="sw"></span>Intérprete · IA</li>
+          <li class="k-cache"><span class="sw"></span>Caché</li>
+          <li class="k-composer"><span class="sw"></span>Compositor · IA</li>
+          <li class="k-guard"><span class="sw"></span>Guardián</li>
+          <li class="k-data"><span class="sw"></span>Datos</li>
+        </ul>
+        <ol class="steps" id="steps"><li class="empty-trace" style="border:0;padding:0">Todavía no ha actuado ningún agente.</li></ol>
+      </aside>
+    </div>
+  </section>
+
+  <section id="tab-specs" class="panel wrap" role="tabpanel" aria-labelledby="t-specs" hidden>
+    <div class="doc">
+      <div style="display:grid;gap:8px">
+        <h2>Lo único que existe de la app</h2>
+        <p class="lede">Eidos no tiene pantallas en su código. Tiene tres especificaciones en la carpeta <code>specs/</code> y un runtime que solo sabe dibujar los componentes del catálogo. Edita un fichero, recarga la página y la versión cambia: las pantallas se vuelven a generar con la spec nueva.</p>
+      </div>
+      <div id="specList" style="display:grid;gap:14px"></div>
+    </div>
+  </section>
+
+  <section id="tab-arq" class="panel wrap" role="tabpanel" aria-labelledby="t-arq" hidden>
+    <div class="doc">
+      <div style="display:grid;gap:8px">
+        <h2>Cómo se materializa una pantalla</h2>
+        <p class="lede">Dos agentes con IA, que corren en tu ordenador con gpt-oss, y tres piezas deterministas. La IA solo entra donde hay ambigüedad: entender lo que pides y diseñar una pantalla que aún no existe.</p>
+      </div>
+      <div class="diagram">
+        <svg viewBox="0 0 360 486" role="img" aria-label="Flujo: la persona habla con el Intérprete, que busca en la caché de pantallas; si no hay plantilla la genera el Compositor y la valida el Guardián; el Renderizador une plantilla y datos y devuelve la pantalla. Las specs alimentan a todos y Datos lee la base SQLite.">
+          <defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="d-ah" d="M0,0 L8,4 L0,8 z"/></marker></defs>
+          <rect class="d-box" x="8" y="70" width="104" height="260" rx="10" style="stroke-dasharray:4 3"/>
+          <text class="d-t" x="20" y="92">specs/</text>
+          <text class="d-s" x="20" y="112">app.spec</text>
+          <text class="d-s" x="20" y="128">design.spec</text>
+          <text class="d-s" x="20" y="144">catalog.spec</text>
+          <text class="d-s" x="20" y="176">versión →</text>
+          <text class="d-s" x="20" y="190">invalida la</text>
+          <text class="d-s" x="20" y="204">caché</text>
+          <path class="d-dash" d="M112,90 H130" marker-end="url(#ah)"/>
+          <path class="d-dash" d="M112,240 H130" marker-end="url(#ah)"/>
+          <path class="d-dash" d="M112,310 H130" marker-end="url(#ah)"/>
+          <rect class="d-box" x="130" y="8" width="150" height="34" rx="10"/>
+          <text class="d-t" x="205" y="30" text-anchor="middle">Persona</text>
+          <rect class="d-box d-llm" x="130" y="70" width="150" height="40" rx="10"/>
+          <text class="d-t" x="205" y="87" text-anchor="middle">Intérprete</text>
+          <text class="d-s" x="205" y="101" text-anchor="middle">gpt-oss · esfuerzo bajo</text>
+          <rect class="d-box d-det" x="130" y="140" width="150" height="40" rx="10"/>
+          <text class="d-t" x="205" y="157" text-anchor="middle">Caché de pantallas</text>
+          <text class="d-s" x="205" y="171" text-anchor="middle">SQLite · por intent</text>
+          <rect class="d-box d-llm" x="130" y="220" width="150" height="40" rx="10"/>
+          <text class="d-t" x="205" y="237" text-anchor="middle">Compositor</text>
+          <text class="d-s" x="205" y="251" text-anchor="middle">gpt-oss · genera plantilla</text>
+          <rect class="d-box d-det" x="130" y="290" width="150" height="40" rx="10"/>
+          <text class="d-t" x="205" y="307" text-anchor="middle">Guardián</text>
+          <text class="d-s" x="205" y="321" text-anchor="middle">valida y corrige</text>
+          <rect class="d-box d-det" x="130" y="370" width="150" height="40" rx="10"/>
+          <text class="d-t" x="205" y="387" text-anchor="middle">Renderizador</text>
+          <text class="d-s" x="205" y="401" text-anchor="middle">navegador · plantilla + datos</text>
+          <path class="d-l" d="M205,42 V70" marker-end="url(#ah)"/>
+          <text class="d-lab" x="211" y="60">texto libre</text>
+          <path class="d-l" d="M205,110 V140" marker-end="url(#ah)"/>
+          <text class="d-lab" x="211" y="129">intent</text>
+          <path class="d-l" d="M205,180 V220" marker-end="url(#ah)"/>
+          <text class="d-lab" x="211" y="203">no está</text>
+          <path class="d-l" d="M205,260 V290" marker-end="url(#ah)"/>
+          <path class="d-l" d="M205,330 V370" marker-end="url(#ah)"/>
+          <path class="d-dash" d="M280,310 H296 V172 H282" marker-end="url(#ah)"/>
+          <text class="d-lab" x="268" y="350" text-anchor="end">guarda</text>
+          <path class="d-l" d="M280,152 H322 V384 H282" marker-end="url(#ah)"/>
+          <text class="d-lab" x="300" y="136">está</text>
+          <path class="d-l" d="M280,400 H346 V25 H282" marker-end="url(#ah)"/>
+          <text class="d-lab" x="300" y="430" text-anchor="middle">pantalla</text>
+          <rect class="d-box d-det" x="8" y="370" width="104" height="40" rx="10"/>
+          <text class="d-t" x="60" y="387" text-anchor="middle">Datos</text>
+          <text class="d-s" x="60" y="401" text-anchor="middle">filtra · valida</text>
+          <rect class="d-box" x="8" y="440" width="104" height="36" rx="10"/>
+          <text class="d-t" x="60" y="462" text-anchor="middle">SQLite</text>
+          <path class="d-l" d="M60,440 V410" marker-end="url(#ah)"/>
+          <path class="d-l" d="M112,390 H130" marker-end="url(#ah)"/>
+          <path class="d-dash" d="M60,330 V370" marker-end="url(#ah)"/>
+        </svg>
+      </div>
+
+      <div style="display:grid;gap:10px">
+        <h3>Recorrido de una petición</h3>
+        <ol class="flow">
+          <li>Escribes «solo los admins». El Intérprete lo traduce a <code>user.list {filter:{rol:"admin"}}</code>. Si pulsas un botón de una pantalla generada, este paso se salta: la acción ya lleva su intent.</li>
+          <li>Datos prepara el contexto (filtra, calcula métricas) y la caché busca una plantilla para <code>user.list</code> hecha con esta versión de las specs. Si la encuentra, no se llama a ningún modelo.</li>
+          <li>Si no la hay, el Compositor diseña una usando solo el catálogo y las reglas de diseño. No ve datos reales: escribe enlaces como <code>{{item.nombre}}</code>.</li>
+          <li>El Guardián la revisa contra el catálogo y la spec, y corrige lo que puede: propiedades desconocidas, un segundo botón primario, un borrado fuera de la pantalla de confirmación, campos obligatorios que faltan. Si no hay forma de arreglarla, pide al Compositor una corrección, una sola vez.</li>
+          <li>La plantilla se guarda en SQLite y el navegador la pinta con los datos.</li>
+          <li>Al enviar un formulario, Datos aplica las reglas de la spec y escribe en la BD. Ningún agente escribe datos por su cuenta.</li>
+        </ol>
+      </div>
+
+      <div class="split">
+        <div class="llm"><h4>Lo decide un modelo</h4><ul><li>Entender una petición en lenguaje natural</li><li>Diseñar una pantalla que aún no existe</li></ul></div>
+        <div class="det"><h4>Lo hace código determinista</h4><ul><li>Validar y corregir la plantilla</li><li>Filtrar, calcular y validar datos</li><li>Escribir en la BD y aplicar reglas de negocio</li><li>Renderizar y cachear</li></ul></div>
+      </div>
+
+      <div style="display:grid;gap:10px">
+        <h3>Dónde está cada pieza</h3>
+        <ul style="margin:0;padding-left:20px;display:grid;gap:6px">
+          <li><code>specs/</code>: la app. Lo único que tocarías para cambiarla o ampliarla.</li>
+          <li><code>server/prompts.js</code>: los prompts del Intérprete y el Compositor, construidos a partir de las specs.</li>
+          <li><code>server/guard.js</code>: el Guardián. <code>server/data.js</code> y <code>server/rules.js</code>: Datos y las reglas de negocio.</li>
+          <li><code>server/runtime.js</code>: el bucle que encadena a los agentes. <code>server/llm.js</code>: la conexión con gpt-oss.</li>
+          <li><code>public/app.js</code>: el Renderizador, que solo sabe dibujar el catálogo.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="cmd" id="cmd">
+  <div class="wrap">
+    <div class="chips" id="chips"></div>
+    <form id="cmdForm" autocomplete="off">
+      <input id="cmdInput" type="text" placeholder="¿Qué necesitas? «editores inactivos», «alta de Marta en Producto»…" aria-label="¿Qué necesitas?">
+      <button class="g-btn primary" id="sendBtn" type="submit">Ir</button>
+      <button class="g-btn" id="stopBtn" type="button" hidden>Cancelar</button>
+    </form>
+  </div>
+</div>
+<script src="/app.js"></script>
+</body>
+</html>

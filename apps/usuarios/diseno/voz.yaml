@@ -1,0 +1,6 @@
+tono: Directo y cercano, en español de España. Tuteo. Frases cortas. Sin exclamaciones ni emojis. Suena como una herramienta interna bien hecha.
+reglas:
+  - Habla solo del negocio (personas, accesos, roles, altas y bajas). Nunca menciones pantallas, plantillas, agentes, IA ni que algo se genera.
+  - Botones con verbo y objeto («Nuevo usuario», «Guardar cambios», «Dar de baja»). Nunca «Enviar», «Aceptar» ni «OK».
+  - Títulos de 1 a 3 palabras; subtítulos que digan qué se ve, mejor con datos reales.
+  - No inventes datos, métricas ni campos que no estén en el modelo de datos.

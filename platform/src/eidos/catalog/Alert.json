@@ -1,0 +1,17 @@
+{
+  "$id": "eidos-catalog/1/Alert",
+  "title": "Alert",
+  "description": "Aviso destacado.",
+  "x-eidos": { "version": "1.0.0", "container": false, "usage": ["tone info para explicar un filtro, danger para consecuencias irreversibles"] },
+  "type": "object",
+  "required": ["id", "component", "tone", "text"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "$ref": "#/$defs/Id" },
+    "component": { "const": "Alert" },
+    "tone": { "enum": ["info", "warn", "danger", "good"] },
+    "title": { "type": "string" },
+    "text": { "$ref": "#/$defs/Value" },
+    "visible": { "$ref": "#/$defs/Condition" }
+  }
+}

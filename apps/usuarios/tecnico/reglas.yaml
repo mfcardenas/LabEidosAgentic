@@ -1,0 +1,6 @@
+- id: ultimoAdminActivo
+  tipo: minimo
+  entidad: Usuario
+  critica: true
+  texto: Siempre debe quedar al menos un administrador activo.
+  params: { donde: { rol: admin, activo: true }, min: 1 }

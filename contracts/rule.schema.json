@@ -1,0 +1,43 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "tipo": {
+      "enum": [
+        "minimo",
+        "sinSolape"
+      ],
+      "title": "Tipo",
+      "type": "string"
+    },
+    "entidad": {
+      "title": "Entidad",
+      "type": "string"
+    },
+    "texto": {
+      "title": "Texto",
+      "type": "string"
+    },
+    "critica": {
+      "default": false,
+      "title": "Critica",
+      "type": "boolean"
+    },
+    "params": {
+      "additionalProperties": true,
+      "title": "Params",
+      "type": "object"
+    }
+  },
+  "required": [
+    "id",
+    "tipo",
+    "entidad",
+    "texto"
+  ],
+  "title": "RuleSpec",
+  "type": "object"
+}

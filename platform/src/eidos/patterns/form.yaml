@@ -1,0 +1,7 @@
+nombre: form
+descripcion: Formulario de alta o edición que ejecuta el comando de la vista.
+datos: [item, options]
+receta:
+  - "Page con title \"{titulo}\" y un subtitle que diga para qué sirve. Sin actions en la cabecera."
+  - "Card con un Form: command \"{comando}\", fields con todos los campos editables (identidad primero; clasificación y estado después), submit con verbo y objeto («{submit}») y cancel «Cancelar» que navega a la vista anterior lógica."
+  - "Si hay reglas de negocio de la entidad, añade debajo un Text variant muted que las explique."

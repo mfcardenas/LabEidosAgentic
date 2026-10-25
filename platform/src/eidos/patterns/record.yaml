@@ -1,0 +1,7 @@
+nombre: record
+descripcion: Ficha de un registro con acceso a editarlo y eliminarlo.
+datos: [item]
+receta:
+  - "Page con title {{\"path\": \"/item/{campo_titulo}\"}}, subtitle con otro campo que identifique el registro, y actions: Button primary «Editar» si existe vista de edición y Button secondary «{eliminar}» que navega a la vista de confirmación si existe (params id {{\"path\": \"/item/id\"}})."
+  - "Columns con dos Card: una con los datos que identifican el registro y otra con los de clasificación, estado o fechas, cada una con un KeyValue enlazado a /item."
+  - "Usa format badge en enum, status en booleanos, date o datetime en fechas y email en emails."

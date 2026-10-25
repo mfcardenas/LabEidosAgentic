@@ -1,0 +1,4 @@
+vista: reserva.create
+requisitos: [REQ-004]
+aserciones:
+  - tiene_componente: { tipo: Form, comando: reserva.crear, campos_incluyen: [titulo, sala, responsable, inicio, fin, estado] }

@@ -1,0 +1,28 @@
+.con{display:grid;gap:30px;padding-block:22px 48px}
+.con h2{margin:0;font-family:var(--f-display);font-size:21px}
+.con .meta{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.con-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.con-head .g-btn{margin-left:auto}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:grid;gap:8px;align-content:start}
+.card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.card h3{margin:0;font-size:15px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.card .btns{display:flex;gap:8px;flex-wrap:wrap}
+.card ul{margin:0;padding-left:18px;font-size:13px;display:grid;gap:3px}
+.card .ok{color:var(--good)} .card .bad{color:var(--bad)}
+.split-view{display:grid;grid-template-columns:320px minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:900px){.split-view{grid-template-columns:minmax(0,1fr)}}
+.art-list{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.art-list button{width:100%;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 12px;cursor:pointer;display:grid;gap:3px}
+.art-list button[aria-current="true"]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.art-list .k{font-family:var(--f-mono);font-size:13px}
+.art-list .row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.art-detail{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:12px;min-width:0}
+.art-detail .bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.art-detail .bar .tbtn:first-of-type{margin-left:auto}
+.preview{border:1px dashed var(--line);border-radius:12px;padding:16px;background:var(--bg);pointer-events:none;user-select:none}
+.findings{margin:0;padding-left:18px;font-size:13px;display:grid;gap:3px}
+.audit{margin:0;padding-left:20px;font-size:13px;display:grid;gap:4px;font-family:var(--f-mono)}
+.trace-list{margin:14px 0 0;padding-left:20px;font-size:13px;display:grid;gap:4px}
+.trace-list b{font-family:var(--f-mono);font-size:11px;text-transform:uppercase;color:var(--muted)}
+.g-badge.sm{font-size:11px;padding:1px 6px}

@@ -1,0 +1,7 @@
+nombre: confirm
+descripcion: Confirmación de una operación de eliminación sobre un registro.
+datos: [item]
+receta:
+  - "Page con title \"{titulo}\", subtitle {{\"path\": \"/item/{campo_titulo}\"}} y actions: Button ghost «Cancelar» que vuelve al detalle (params id {{\"path\": \"/item/id\"}}) y Button danger «{eliminar}» con action {{\"command\": \"{comando}\", \"input\": {{\"id\": {{\"path\": \"/item/id\"}}}}}}."
+  - "Alert tone danger con un title corto y un text que explique la consecuencia y que no se puede deshacer."
+  - "Card con un KeyValue de los campos que identifican el registro."

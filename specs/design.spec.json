@@ -1,0 +1,54 @@
+{
+  "tono": "Directo y cercano, en español de España. Tuteo. Frases cortas. Sin exclamaciones ni emojis. Suena como una herramienta interna bien hecha, no como una demo.",
+  "reglas": [
+    "Habla solo del dominio (usuarios, altas, cambios, bajas). Nunca menciones pantallas, plantillas, agentes, IA, specs ni que algo se genera.",
+    "Estructura fija: cabecera (title, subtitle y actions) → resumen opcional (Row de Stat) → contenido agrupado en Section con título. No dejes componentes sueltos en la raíz salvo Row, Alert, Empty y Section.",
+    "Cada Section es una tarjeta con un título corto y concreto (\"Perfil\", \"Acceso\", \"Datos de la persona\"). Agrupa en ella solo lo que va junto.",
+    "Para dos columnas, pon dos Section dentro de un Row.",
+    "Título de pantalla de 1 a 3 palabras, o el nombre del registro ({{item.nombre}}). El subtítulo es una frase útil, mejor con datos reales ({{count}} personas, {{item.email}}).",
+    "Una sola acción primaria por pantalla, en la cabecera o como submit del formulario. Las demás, secondary o ghost.",
+    "Botones con verbo y objeto: «Nuevo usuario», «Guardar cambios», «Editar», «Dar de baja». Nunca «Enviar», «Aceptar» ni «OK».",
+    "No repitas el mismo dato en dos sitios ni inventes datos, métricas o campos que no estén en el contexto.",
+    "Stat solo con métricas de stats. Usa hint para dar contexto (\"últimos 30 días\") y tone good o warn cuando aporte lectura.",
+    "Columnas: el campo título con format person; enum con badge; booleanos con status; fechas con date; emails con email.",
+    "Si filter.active, explica el filtro con un Alert tone=info (usa {{filter.label}}) y ofrece un botón ghost «Quitar filtro» que navegue al listado sin filtro.",
+    "Si la lista puede quedar vacía, añade un Empty con when=\"!count\" y la Table con when=\"count\".",
+    "Las acciones destructivas usan variant danger y solo viven en la pantalla de baja; en otras pantallas, un botón secondary navega a la baja.",
+    "Formularios dentro de una Section, con todos los campos editables en orden lógico (identidad primero, permisos después). Etiquetas de la spec; help solo si aclara algo real.",
+    "Máximo 40 nodos por pantalla."
+  ],
+  "recetas": {
+    "listado": [
+      "Cabecera: title \"Usuarios\", subtitle \"{{count}} personas con acceso\", acción primary «Nuevo usuario» que navega al alta.",
+      "Row con 4 Stat: Total, Activos (tone good), Inactivos (tone warn), Altas en 30 días (hint \"últimos 30 días\").",
+      "Alert de filtro y botón «Quitar filtro» con when=\"filter.active\".",
+      "Section \"Equipo\" con la Table (when=\"count\"): nombre (person), email (email), rol (badge), departamento, activo (status). La fila abre el detalle.",
+      "Empty (when=\"!count\") con título \"Nadie coincide\", un texto que diga qué probar y un botón ghost «Quitar filtro»."
+    ],
+    "detalle": [
+      "Cabecera: title \"{{item.nombre}}\", subtitle \"{{item.email}}\", acciones «Editar» (primary) y «Dar de baja» (secondary, navega a la baja).",
+      "Row con dos Section: \"Perfil\" (KeyValue: nombre, email, departamento) y \"Acceso\" (KeyValue: rol con badge, activo con status, alta con date)."
+    ],
+    "alta": [
+      "Cabecera: title \"Nuevo usuario\", subtitle \"Da acceso a una persona a la herramienta.\" Sin acciones en la cabecera.",
+      "Section \"Datos de la persona\" con un Form: nombre, email, departamento, rol, activo. Submit «Crear usuario». Cancel «Cancelar» que vuelve al listado.",
+      "Help del rol: \"Puedes cambiarlo más adelante.\""
+    ],
+    "edicion": [
+      "Cabecera: title \"Editar usuario\", subtitle \"{{item.nombre}} · {{item.email}}\". Sin acciones en la cabecera.",
+      "Section \"Datos de la persona\" con un Form: nombre, email, departamento, rol, activo. Submit «Guardar cambios». Cancel «Cancelar» que vuelve al detalle ({{item.id}}).",
+      "Debajo, un Text variant muted con la regla de negocio de la entidad que afecte a rol o activo."
+    ],
+    "baja": [
+      "Cabecera: title \"Dar de baja\", subtitle \"{{item.nombre}} · {{item.email}}\", acciones «Cancelar» (ghost, vuelve al detalle) y «Dar de baja» (danger, acción delete).",
+      "Alert tone=danger, title \"Perderá el acceso\", text que diga que la baja no se puede deshacer.",
+      "Section \"Usuario\" con KeyValue: nombre, email, rol (badge), departamento."
+    ],
+    "libre": [
+      "Cabecera con el título sugerido y un subtitle que diga qué se está mirando.",
+      "Row con 2-4 Stat relevantes para la petición.",
+      "Una Section por cada reparto o comparación, con BarList ({\"$bind\":\"stats.porRol\"}, {\"$bind\":\"stats.porDepartamento\"}…). Si dos caben juntas, ponlas en un Row.",
+      "Si la petición pide personas concretas, una Section con Table como en el listado."
+    ]
+  }
+}

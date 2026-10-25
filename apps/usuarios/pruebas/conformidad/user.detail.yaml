@@ -1,0 +1,8 @@
+vista: user.detail
+requisitos: [REQ-004]
+aserciones:
+  - titulo_enlazado: { path: /item/nombre }
+  - tiene_accion: { vista_destino: user.edit, variante: primary, en_cabecera: true }
+  - tiene_accion: { vista_destino: user.delete, en_cabecera: true }
+  - tiene_componente: { tipo: KeyValue }
+  - no_tiene_accion: { comando_tipo: eliminar }

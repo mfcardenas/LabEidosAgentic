@@ -1,0 +1,11 @@
+id: reservas
+nombre: Reservas de salas
+contrato: eidos-inputs/1
+idioma: es-ES
+proposito: Reservar salas de reuniones de la oficina sin solapes y saber qué salas hay disponibles.
+inicio: reserva.list
+sugerencias:
+  - { etiqueta: Reservas, vista: reserva.list }
+  - { etiqueta: Nueva reserva, vista: reserva.create }
+  - { etiqueta: Salas, vista: sala.list }
+  - { etiqueta: Provisionales, texto: "reservas provisionales" }

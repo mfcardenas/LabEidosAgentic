@@ -1,0 +1,3 @@
+# Políticas de la aplicación (propiedad del desarrollador). Se combinan con las de la plataforma.
+autonomia:
+  media: { generar: A2, publicar: A2, reintentos: 2, ruta: lote }

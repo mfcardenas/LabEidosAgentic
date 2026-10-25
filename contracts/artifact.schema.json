@@ -1,0 +1,171 @@
+{
+  "$defs": {
+    "ArtifactStatus": {
+      "enum": [
+        "planificado",
+        "escalado",
+        "provisional",
+        "candidato",
+        "pendiente_aprobacion",
+        "publicado",
+        "desactualizado",
+        "retirado",
+        "rechazado"
+      ],
+      "title": "ArtifactStatus",
+      "type": "string"
+    },
+    "Finding": {
+      "properties": {
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        },
+        "layer": {
+          "title": "Layer",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "path": {
+          "default": "",
+          "title": "Path",
+          "type": "string"
+        },
+        "source": {
+          "default": "guard",
+          "title": "Source",
+          "type": "string"
+        },
+        "artifact": {
+          "default": "",
+          "title": "Artifact",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "severity",
+        "layer",
+        "message"
+      ],
+      "title": "Finding",
+      "type": "object"
+    },
+    "RiskClass": {
+      "enum": [
+        "baja",
+        "media",
+        "alta",
+        "manual"
+      ],
+      "title": "RiskClass",
+      "type": "string"
+    },
+    "Route": {
+      "enum": [
+        "demanda",
+        "lote",
+        "manual"
+      ],
+      "title": "Route",
+      "type": "string"
+    },
+    "Severity": {
+      "enum": [
+        "blocking",
+        "major",
+        "minor",
+        "autofixed"
+      ],
+      "title": "Severity",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "app": {
+      "title": "App",
+      "type": "string"
+    },
+    "kind": {
+      "title": "Kind",
+      "type": "string"
+    },
+    "key": {
+      "title": "Key",
+      "type": "string"
+    },
+    "revision": {
+      "title": "Revision",
+      "type": "integer"
+    },
+    "status": {
+      "$ref": "#/$defs/ArtifactStatus"
+    },
+    "risk": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RiskClass"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "route": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Route"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "document": {
+      "additionalProperties": true,
+      "title": "Document",
+      "type": "object"
+    },
+    "fingerprints": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Fingerprints",
+      "type": "object"
+    },
+    "findings": {
+      "items": {
+        "$ref": "#/$defs/Finding"
+      },
+      "title": "Findings",
+      "type": "array"
+    },
+    "provenance": {
+      "additionalProperties": true,
+      "title": "Provenance",
+      "type": "object"
+    },
+    "created_at": {
+      "title": "Created At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "app",
+    "kind",
+    "key",
+    "revision",
+    "status",
+    "document"
+  ],
+  "title": "ArtifactRecord",
+  "type": "object"
+}

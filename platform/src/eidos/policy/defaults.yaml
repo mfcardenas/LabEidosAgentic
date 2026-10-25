@@ -1,0 +1,19 @@
+# Políticas por defecto de la plataforma. Cada aplicación puede ajustarlas en politicas/*.yaml (propiedad del desarrollador).
+riesgo:
+  patron: { collection: baja, record: baja, form: media, confirm: alta }
+  comando: { crear: media, actualizar: media, eliminar: alta }
+  regla_critica: alta
+  requisito_criticidad: { baja: baja, media: baja, alta: alta }
+
+autonomia:
+  baja:   { generar: A3, publicar: A3, reintentos: 2, ruta: demanda }
+  media:  { generar: A2, publicar: A2, reintentos: 2, ruta: lote }
+  alta:   { generar: A1, publicar: A1, reintentos: 1, ruta: lote }
+  manual: { generar: A0, publicar: A1, reintentos: 0, ruta: manual }
+
+especificacion:
+  publicar: A0
+
+muestreo:
+  baja: 0.05
+  media: 0.2

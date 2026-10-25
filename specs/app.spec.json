@@ -1,0 +1,66 @@
+{
+  "nombre": "Eidos Usuarios",
+  "idioma": "es-ES",
+  "proposito": "Gestionar las personas con acceso a una herramienta interna: alta, consulta, edición y baja.",
+  "entidades": {
+    "Usuario": {
+      "etiqueta": "usuario",
+      "plural": "usuarios",
+      "campoTitulo": "nombre",
+      "orden": "nombre",
+      "campos": {
+        "nombre": { "tipo": "texto", "requerido": true, "min": 2, "max": 80, "etiqueta": "Nombre" },
+        "email": { "tipo": "email", "requerido": true, "unico": true, "minusculas": true, "max": 120, "etiqueta": "Email" },
+        "rol": {
+          "tipo": "enum",
+          "etiqueta": "Rol",
+          "porDefecto": "lector",
+          "valores": [
+            { "valor": "admin", "etiqueta": "Admin", "tono": "accent" },
+            { "valor": "editor", "etiqueta": "Editor", "tono": "info" },
+            { "valor": "lector", "etiqueta": "Lector", "tono": "neutral" }
+          ]
+        },
+        "departamento": { "tipo": "texto", "max": 40, "etiqueta": "Departamento" },
+        "activo": { "tipo": "booleano", "porDefecto": true, "etiqueta": "Activo", "si": "Activo", "no": "Inactivo" },
+        "alta": { "tipo": "fecha", "auto": "alCrear", "soloLectura": true, "etiqueta": "Alta" }
+      },
+      "reglas": [
+        {
+          "id": "ultimoAdminActivo",
+          "texto": "Siempre debe quedar al menos un admin activo: no se puede dar de baja, desactivar ni quitar el rol al último."
+        }
+      ],
+      "metricas": {
+        "total": { "tipo": "conteo", "etiqueta": "Total" },
+        "activos": { "tipo": "conteo", "donde": { "activo": true }, "etiqueta": "Activos" },
+        "inactivos": { "tipo": "conteo", "donde": { "activo": false }, "etiqueta": "Inactivos" },
+        "admins": { "tipo": "conteo", "donde": { "rol": "admin" }, "etiqueta": "Admins" },
+        "altas30": { "tipo": "recientes", "campo": "alta", "dias": 30, "etiqueta": "Altas en 30 días" },
+        "porRol": { "tipo": "reparto", "campo": "rol", "etiqueta": "Por rol" },
+        "porDepartamento": { "tipo": "reparto", "campo": "departamento", "etiqueta": "Por departamento" }
+      }
+    }
+  },
+  "intents": {
+    "user.list": { "tipo": "listado", "entidad": "Usuario", "descripcion": "Listado de usuarios, con filtro opcional." },
+    "user.detail": { "tipo": "detalle", "entidad": "Usuario", "descripcion": "Ficha de un usuario con accesos a editar y dar de baja." },
+    "user.create": { "tipo": "alta", "entidad": "Usuario", "descripcion": "Formulario de alta de un usuario." },
+    "user.edit": { "tipo": "edicion", "entidad": "Usuario", "descripcion": "Formulario de edición de un usuario." },
+    "user.delete": { "tipo": "baja", "entidad": "Usuario", "descripcion": "Confirmación de baja. Único sitio donde se permite la acción delete." },
+    "view.custom": { "tipo": "libre", "entidad": "Usuario", "descripcion": "Vista libre que no encaja en las anteriores: resúmenes, repartos, comparativas." }
+  },
+  "inicio": "user.list",
+  "flujos": { "alta": "detalle", "edicion": "detalle", "baja": "listado" },
+  "sugerencias": [
+    { "etiqueta": "Inicio", "intent": "user.list" },
+    { "etiqueta": "Nuevo usuario", "intent": "user.create" },
+    { "etiqueta": "Solo admins", "texto": "muéstrame solo los admins" },
+    { "etiqueta": "Inactivos", "texto": "¿quién está inactivo?" },
+    { "etiqueta": "Reparto por rol", "texto": "un resumen de cuántos usuarios hay por rol y por departamento" }
+  ],
+  "principios": [
+    "Los agentes proponen pantallas; los datos solo cambian cuando la persona envía un formulario o confirma.",
+    "Una pantalla generada es una plantilla: se guarda por intent y se reutiliza con datos nuevos."
+  ]
+}

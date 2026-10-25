@@ -1,0 +1,5 @@
+vista: user.edit
+requisitos: [REQ-004]
+aserciones:
+  - tiene_componente: { tipo: Form, comando: usuario.actualizar, campos_incluyen: [nombre, email, departamento, rol, activo] }
+  - no_tiene_accion: { comando_tipo: eliminar }

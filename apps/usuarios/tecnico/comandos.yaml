@@ -1,0 +1,22 @@
+- id: usuario.crear
+  tipo: crear
+  entidad: Usuario
+  etiqueta: Crear usuario
+  requisitos: [REQ-003]
+  despues: { vista: user.detail, con: id }
+
+- id: usuario.actualizar
+  tipo: actualizar
+  entidad: Usuario
+  requisitos: [REQ-004]
+  reglas: [ultimoAdminActivo]
+  despues: { vista: user.detail, con: id }
+
+- id: usuario.eliminar
+  tipo: eliminar
+  entidad: Usuario
+  etiqueta: Dar de baja
+  requisitos: [REQ-005]
+  reglas: [ultimoAdminActivo]
+  confirmacion: true
+  despues: { vista: user.list, con: ninguno }

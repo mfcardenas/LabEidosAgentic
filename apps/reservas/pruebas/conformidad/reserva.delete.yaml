@@ -1,0 +1,5 @@
+vista: reserva.delete
+requisitos: [REQ-005]
+aserciones:
+  - tiene_accion: { comando: reserva.eliminar, variante: danger, en_cabecera: true }
+  - tiene_componente: { tipo: Alert }

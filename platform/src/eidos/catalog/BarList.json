@@ -1,0 +1,15 @@
+{
+  "$id": "eidos-catalog/1/BarList",
+  "title": "BarList",
+  "description": "Reparto en barras horizontales.",
+  "x-eidos": { "version": "1.0.0", "container": false, "usage": ["items: {\"path\": \"/stats/<métrica de reparto>\"}"] },
+  "type": "object",
+  "required": ["id", "component", "items"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "$ref": "#/$defs/Id" },
+    "component": { "const": "BarList" },
+    "items": { "$ref": "#/$defs/Path" },
+    "visible": { "$ref": "#/$defs/Condition" }
+  }
+}

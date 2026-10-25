@@ -1,0 +1,15 @@
+{
+  "$id": "eidos-catalog/1/Columns",
+  "title": "Columns",
+  "description": "Fila de elementos que se apila en pantallas estrechas. Para varias Stat o dos Card.",
+  "x-eidos": { "version": "1.0.0", "container": true, "usage": ["Entre 2 y 4 hijos"] },
+  "type": "object",
+  "required": ["id", "component", "children"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "$ref": "#/$defs/Id" },
+    "component": { "const": "Columns" },
+    "children": { "type": "array", "items": { "$ref": "#/$defs/Id" }, "minItems": 1, "maxItems": 4 },
+    "visible": { "$ref": "#/$defs/Condition" }
+  }
+}

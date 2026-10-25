@@ -1,0 +1,76 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "pattern": "^REQ-\\d{3,}$",
+      "title": "Id",
+      "type": "string"
+    },
+    "titulo": {
+      "title": "Titulo",
+      "type": "string"
+    },
+    "actor": {
+      "title": "Actor",
+      "type": "string"
+    },
+    "prioridad": {
+      "default": "media",
+      "enum": [
+        "baja",
+        "media",
+        "alta"
+      ],
+      "title": "Prioridad",
+      "type": "string"
+    },
+    "criticidad": {
+      "default": "media",
+      "enum": [
+        "baja",
+        "media",
+        "alta"
+      ],
+      "title": "Criticidad",
+      "type": "string"
+    },
+    "relacionados": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Relacionados",
+      "type": "array"
+    },
+    "objetivo": {
+      "default": "",
+      "title": "Objetivo",
+      "type": "string"
+    },
+    "reglas": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Reglas",
+      "type": "array"
+    },
+    "criterios": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Criterios",
+      "type": "array"
+    },
+    "fichero": {
+      "default": "",
+      "title": "Fichero",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "titulo",
+    "actor"
+  ],
+  "title": "Requirement",
+  "type": "object"
+}

@@ -1,0 +1,7 @@
+[
+  { "id": "r01", "titulo": "Comité de producto", "sala": "s01", "responsable": "lucia.ferrer@ejemplo.com", "inicio": "2026-10-27T09:30", "fin": "2026-10-27T11:00", "estado": "confirmada" },
+  { "id": "r02", "titulo": "Entrevista backend", "sala": "s03", "responsable": "iker.santos@ejemplo.com", "inicio": "2026-10-27T12:00", "fin": "2026-10-27T13:00", "estado": "confirmada" },
+  { "id": "r03", "titulo": "Formación de seguridad", "sala": "s02", "responsable": "tomas.vidal@ejemplo.com", "inicio": "2026-10-28T10:00", "fin": "2026-10-28T12:00", "estado": "provisional" },
+  { "id": "r04", "titulo": "Revisión trimestral", "sala": "s01", "responsable": "carmen.ruiz@ejemplo.com", "inicio": "2026-10-29T16:00", "fin": "2026-10-29T17:30", "estado": "confirmada" },
+  { "id": "r05", "titulo": "Daily del equipo móvil", "sala": "s03", "responsable": "nerea.gil@ejemplo.com", "inicio": "2026-10-30T09:00", "fin": "2026-10-30T09:15", "estado": "confirmada" }
+]

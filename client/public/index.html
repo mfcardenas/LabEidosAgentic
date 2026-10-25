@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Eidos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><b>Eidos</b><span id="appName"></span><span class="tech-only" id="specInfo"></span></div>
+    <select id="appSelect" class="tbtn tech-only" aria-label="Aplicación"></select>
+    <a class="tbtn tech-only" href="/console.html">Consola</a>
+    <button class="tbtn techbtn" id="techBtn" type="button" aria-pressed="false">Vista técnica</button>
+  </div>
+</header>
+<main class="wrap panel">
+  <div class="stagebar">
+    <button class="tbtn" id="backBtn" type="button" hidden>← Atrás</button>
+    <span class="prov tech-only" id="techInfo"></span>
+  </div>
+  <p class="note" id="note" hidden></p>
+  <div class="stage" id="stage"><div id="screen"><div class="sys"><div class="working">Cargando</div></div></div></div>
+  <ol class="trace-list tech-only" id="techTrace"></ol>
+  <pre class="json tech-only" id="techJson"></pre>
+</main>
+<div class="cmd">
+  <div class="wrap">
+    <div class="chips" id="chips"></div>
+    <form id="cmdForm" autocomplete="off">
+      <input id="cmdInput" type="text" placeholder="¿Qué necesitas?" aria-label="¿Qué necesitas?">
+      <button class="g-btn primary" type="submit">Ir</button>
+    </form>
+  </div>
+</div>
+<script type="module" src="/main.js"></script>
+</body>
+</html>

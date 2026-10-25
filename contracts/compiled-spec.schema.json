@@ -1,0 +1,866 @@
+{
+  "$defs": {
+    "AfterCommand": {
+      "additionalProperties": false,
+      "properties": {
+        "vista": {
+          "title": "Vista",
+          "type": "string"
+        },
+        "con": {
+          "default": "id",
+          "enum": [
+            "id",
+            "ninguno"
+          ],
+          "title": "Con",
+          "type": "string"
+        }
+      },
+      "required": [
+        "vista"
+      ],
+      "title": "AfterCommand",
+      "type": "object"
+    },
+    "AppManifest": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "nombre": {
+          "title": "Nombre",
+          "type": "string"
+        },
+        "contrato": {
+          "const": "eidos-inputs/1",
+          "default": "eidos-inputs/1",
+          "title": "Contrato",
+          "type": "string"
+        },
+        "idioma": {
+          "default": "es-ES",
+          "title": "Idioma",
+          "type": "string"
+        },
+        "proposito": {
+          "title": "Proposito",
+          "type": "string"
+        },
+        "inicio": {
+          "title": "Inicio",
+          "type": "string"
+        },
+        "sugerencias": {
+          "items": {
+            "$ref": "#/$defs/Suggestion"
+          },
+          "title": "Sugerencias",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "nombre",
+        "proposito",
+        "inicio"
+      ],
+      "title": "AppManifest",
+      "type": "object"
+    },
+    "CommandSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "tipo": {
+          "enum": [
+            "crear",
+            "actualizar",
+            "eliminar"
+          ],
+          "title": "Tipo",
+          "type": "string"
+        },
+        "entidad": {
+          "title": "Entidad",
+          "type": "string"
+        },
+        "etiqueta": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Etiqueta"
+        },
+        "requisitos": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Requisitos",
+          "type": "array"
+        },
+        "reglas": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reglas",
+          "type": "array"
+        },
+        "confirmacion": {
+          "default": false,
+          "title": "Confirmacion",
+          "type": "boolean"
+        },
+        "despues": {
+          "$ref": "#/$defs/AfterCommand"
+        }
+      },
+      "required": [
+        "id",
+        "tipo",
+        "entidad",
+        "despues"
+      ],
+      "title": "CommandSpec",
+      "type": "object"
+    },
+    "CompiledRequirement": {
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "titulo": {
+          "title": "Titulo",
+          "type": "string"
+        },
+        "actor": {
+          "title": "Actor",
+          "type": "string"
+        },
+        "criticidad": {
+          "title": "Criticidad",
+          "type": "string"
+        },
+        "implementedBy": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Implementedby",
+          "type": "array"
+        },
+        "testedBy": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Testedby",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "titulo",
+        "actor",
+        "criticidad"
+      ],
+      "title": "CompiledRequirement",
+      "type": "object"
+    },
+    "ConformanceTest": {
+      "additionalProperties": false,
+      "properties": {
+        "vista": {
+          "title": "Vista",
+          "type": "string"
+        },
+        "requisitos": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Requisitos",
+          "type": "array"
+        },
+        "aserciones": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Aserciones",
+          "type": "array"
+        },
+        "fichero": {
+          "default": "",
+          "title": "Fichero",
+          "type": "string"
+        }
+      },
+      "required": [
+        "vista",
+        "aserciones"
+      ],
+      "title": "ConformanceTest",
+      "type": "object"
+    },
+    "EntitySpec": {
+      "additionalProperties": false,
+      "properties": {
+        "entidad": {
+          "pattern": "^[A-Z][A-Za-z0-9]*$",
+          "title": "Entidad",
+          "type": "string"
+        },
+        "etiqueta": {
+          "title": "Etiqueta",
+          "type": "string"
+        },
+        "plural": {
+          "title": "Plural",
+          "type": "string"
+        },
+        "genero": {
+          "default": "m",
+          "enum": [
+            "m",
+            "f"
+          ],
+          "title": "Genero",
+          "type": "string"
+        },
+        "campoTitulo": {
+          "title": "Campotitulo",
+          "type": "string"
+        },
+        "orden": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Orden"
+        },
+        "campos": {
+          "additionalProperties": {
+            "$ref": "#/$defs/FieldSpec"
+          },
+          "title": "Campos",
+          "type": "object"
+        },
+        "metricas": {
+          "additionalProperties": {
+            "$ref": "#/$defs/MetricSpec"
+          },
+          "title": "Metricas",
+          "type": "object"
+        },
+        "reglas": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reglas",
+          "type": "array"
+        }
+      },
+      "required": [
+        "entidad",
+        "etiqueta",
+        "plural",
+        "campoTitulo",
+        "campos"
+      ],
+      "title": "EntitySpec",
+      "type": "object"
+    },
+    "EnumValue": {
+      "additionalProperties": false,
+      "properties": {
+        "valor": {
+          "title": "Valor",
+          "type": "string"
+        },
+        "etiqueta": {
+          "title": "Etiqueta",
+          "type": "string"
+        },
+        "tono": {
+          "default": "neutral",
+          "enum": [
+            "neutral",
+            "accent",
+            "info",
+            "good",
+            "warn",
+            "bad"
+          ],
+          "title": "Tono",
+          "type": "string"
+        }
+      },
+      "required": [
+        "valor",
+        "etiqueta"
+      ],
+      "title": "EnumValue",
+      "type": "object"
+    },
+    "FieldSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "tipo": {
+          "enum": [
+            "texto",
+            "email",
+            "enum",
+            "booleano",
+            "fecha",
+            "fechahora",
+            "numero",
+            "referencia"
+          ],
+          "title": "Tipo",
+          "type": "string"
+        },
+        "etiqueta": {
+          "title": "Etiqueta",
+          "type": "string"
+        },
+        "requerido": {
+          "default": false,
+          "title": "Requerido",
+          "type": "boolean"
+        },
+        "min": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Min"
+        },
+        "max": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max"
+        },
+        "unico": {
+          "default": false,
+          "title": "Unico",
+          "type": "boolean"
+        },
+        "minusculas": {
+          "default": false,
+          "title": "Minusculas",
+          "type": "boolean"
+        },
+        "porDefecto": {
+          "default": null,
+          "title": "Pordefecto"
+        },
+        "soloLectura": {
+          "default": false,
+          "title": "Sololectura",
+          "type": "boolean"
+        },
+        "auto": {
+          "anyOf": [
+            {
+              "const": "alCrear",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Auto"
+        },
+        "valores": {
+          "items": {
+            "$ref": "#/$defs/EnumValue"
+          },
+          "title": "Valores",
+          "type": "array"
+        },
+        "entidad": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Entidad"
+        },
+        "sensible": {
+          "default": false,
+          "title": "Sensible",
+          "type": "boolean"
+        },
+        "si": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Si"
+        },
+        "no": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "No"
+        }
+      },
+      "required": [
+        "tipo",
+        "etiqueta"
+      ],
+      "title": "FieldSpec",
+      "type": "object"
+    },
+    "Finding": {
+      "properties": {
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        },
+        "layer": {
+          "title": "Layer",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "path": {
+          "default": "",
+          "title": "Path",
+          "type": "string"
+        },
+        "source": {
+          "default": "guard",
+          "title": "Source",
+          "type": "string"
+        },
+        "artifact": {
+          "default": "",
+          "title": "Artifact",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "severity",
+        "layer",
+        "message"
+      ],
+      "title": "Finding",
+      "type": "object"
+    },
+    "MetricSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "tipo": {
+          "enum": [
+            "conteo",
+            "recientes",
+            "reparto"
+          ],
+          "title": "Tipo",
+          "type": "string"
+        },
+        "etiqueta": {
+          "title": "Etiqueta",
+          "type": "string"
+        },
+        "donde": {
+          "additionalProperties": true,
+          "title": "Donde",
+          "type": "object"
+        },
+        "campo": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Campo"
+        },
+        "dias": {
+          "default": 30,
+          "title": "Dias",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "tipo",
+        "etiqueta"
+      ],
+      "title": "MetricSpec",
+      "type": "object"
+    },
+    "RuleSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "tipo": {
+          "enum": [
+            "minimo",
+            "sinSolape"
+          ],
+          "title": "Tipo",
+          "type": "string"
+        },
+        "entidad": {
+          "title": "Entidad",
+          "type": "string"
+        },
+        "texto": {
+          "title": "Texto",
+          "type": "string"
+        },
+        "critica": {
+          "default": false,
+          "title": "Critica",
+          "type": "boolean"
+        },
+        "params": {
+          "additionalProperties": true,
+          "title": "Params",
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "tipo",
+        "entidad",
+        "texto"
+      ],
+      "title": "RuleSpec",
+      "type": "object"
+    },
+    "Severity": {
+      "enum": [
+        "blocking",
+        "major",
+        "minor",
+        "autofixed"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "Suggestion": {
+      "additionalProperties": false,
+      "properties": {
+        "etiqueta": {
+          "title": "Etiqueta",
+          "type": "string"
+        },
+        "vista": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Vista"
+        },
+        "params": {
+          "additionalProperties": true,
+          "title": "Params",
+          "type": "object"
+        },
+        "texto": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Texto"
+        }
+      },
+      "required": [
+        "etiqueta"
+      ],
+      "title": "Suggestion",
+      "type": "object"
+    },
+    "ViewParams": {
+      "additionalProperties": false,
+      "properties": {
+        "filtro": {
+          "default": false,
+          "title": "Filtro",
+          "type": "boolean"
+        },
+        "id": {
+          "default": false,
+          "title": "Id",
+          "type": "boolean"
+        },
+        "prefill": {
+          "default": false,
+          "title": "Prefill",
+          "type": "boolean"
+        }
+      },
+      "title": "ViewParams",
+      "type": "object"
+    },
+    "ViewSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[a-z][a-z0-9]*(\\.[a-z][a-z0-9-]*)+$",
+          "title": "Id",
+          "type": "string"
+        },
+        "titulo": {
+          "title": "Titulo",
+          "type": "string"
+        },
+        "descripcion": {
+          "title": "Descripcion",
+          "type": "string"
+        },
+        "patron": {
+          "title": "Patron",
+          "type": "string"
+        },
+        "entidad": {
+          "title": "Entidad",
+          "type": "string"
+        },
+        "requisitos": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Requisitos",
+          "type": "array"
+        },
+        "parametros": {
+          "$ref": "#/$defs/ViewParams"
+        },
+        "comando": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Comando"
+        },
+        "metricas": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Metricas",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "titulo",
+        "descripcion",
+        "patron",
+        "entidad"
+      ],
+      "title": "ViewSpec",
+      "type": "object"
+    },
+    "Voice": {
+      "additionalProperties": false,
+      "properties": {
+        "tono": {
+          "title": "Tono",
+          "type": "string"
+        },
+        "reglas": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reglas",
+          "type": "array"
+        }
+      },
+      "required": [
+        "tono"
+      ],
+      "title": "Voice",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "contract": {
+      "const": "eidos-spec/1",
+      "default": "eidos-spec/1",
+      "title": "Contract",
+      "type": "string"
+    },
+    "app": {
+      "$ref": "#/$defs/AppManifest"
+    },
+    "version": {
+      "title": "Version",
+      "type": "string"
+    },
+    "requirements": {
+      "items": {
+        "$ref": "#/$defs/CompiledRequirement"
+      },
+      "title": "Requirements",
+      "type": "array"
+    },
+    "entities": {
+      "additionalProperties": {
+        "$ref": "#/$defs/EntitySpec"
+      },
+      "title": "Entities",
+      "type": "object"
+    },
+    "rules": {
+      "additionalProperties": {
+        "$ref": "#/$defs/RuleSpec"
+      },
+      "title": "Rules",
+      "type": "object"
+    },
+    "views": {
+      "additionalProperties": {
+        "$ref": "#/$defs/ViewSpec"
+      },
+      "title": "Views",
+      "type": "object"
+    },
+    "commands": {
+      "additionalProperties": {
+        "$ref": "#/$defs/CommandSpec"
+      },
+      "title": "Commands",
+      "type": "object"
+    },
+    "voice": {
+      "$ref": "#/$defs/Voice"
+    },
+    "recipes": {
+      "additionalProperties": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "title": "Recipes",
+      "type": "object"
+    },
+    "design_rules": {
+      "additionalProperties": true,
+      "title": "Design Rules",
+      "type": "object"
+    },
+    "tokens": {
+      "additionalProperties": true,
+      "title": "Tokens",
+      "type": "object"
+    },
+    "tests": {
+      "items": {
+        "$ref": "#/$defs/ConformanceTest"
+      },
+      "title": "Tests",
+      "type": "array"
+    },
+    "policies": {
+      "additionalProperties": true,
+      "title": "Policies",
+      "type": "object"
+    },
+    "ambiguities": {
+      "items": {
+        "$ref": "#/$defs/Finding"
+      },
+      "title": "Ambiguities",
+      "type": "array"
+    },
+    "fingerprints": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Fingerprints",
+      "type": "object"
+    }
+  },
+  "required": [
+    "app",
+    "version",
+    "requirements",
+    "entities",
+    "rules",
+    "views",
+    "commands",
+    "voice",
+    "recipes",
+    "design_rules",
+    "tokens",
+    "tests",
+    "policies"
+  ],
+  "title": "CompiledSpec",
+  "type": "object"
+}

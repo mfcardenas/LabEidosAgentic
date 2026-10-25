@@ -1,0 +1,6 @@
+vista: reserva.detail
+requisitos: [REQ-005]
+aserciones:
+  - titulo_enlazado: { path: /item/titulo }
+  - tiene_accion: { vista_destino: reserva.edit, en_cabecera: true }
+  - tiene_accion: { vista_destino: reserva.delete, en_cabecera: true }

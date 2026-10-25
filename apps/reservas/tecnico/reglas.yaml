@@ -1,0 +1,6 @@
+- id: salaSinSolape
+  tipo: sinSolape
+  entidad: Reserva
+  critica: true
+  texto: La sala ya tiene una reserva confirmada que se solapa con ese horario.
+  params: { inicio: inicio, fin: fin, agrupar: sala, donde: { estado: confirmada } }

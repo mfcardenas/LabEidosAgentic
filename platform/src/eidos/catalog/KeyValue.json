@@ -1,0 +1,21 @@
+{
+  "$id": "eidos-catalog/1/KeyValue",
+  "title": "KeyValue",
+  "description": "Lista de pares etiqueta-valor para mostrar un registro.",
+  "x-eidos": { "version": "1.0.0", "container": false, "usage": ["value: {\"path\": \"/item/<campo>\"}"] },
+  "type": "object",
+  "required": ["id", "component", "items"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "$ref": "#/$defs/Id" },
+    "component": { "const": "KeyValue" },
+    "items": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "required": ["label", "value"], "additionalProperties": false,
+        "properties": { "label": { "type": "string" }, "value": { "$ref": "#/$defs/Value" }, "format": { "$ref": "#/$defs/Format" } }
+      }
+    },
+    "visible": { "$ref": "#/$defs/Condition" }
+  }
+}

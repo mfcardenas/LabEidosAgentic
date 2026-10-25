@@ -1,0 +1,88 @@
+{
+  "$defs": {
+    "ViewParams": {
+      "additionalProperties": false,
+      "properties": {
+        "filtro": {
+          "default": false,
+          "title": "Filtro",
+          "type": "boolean"
+        },
+        "id": {
+          "default": false,
+          "title": "Id",
+          "type": "boolean"
+        },
+        "prefill": {
+          "default": false,
+          "title": "Prefill",
+          "type": "boolean"
+        }
+      },
+      "title": "ViewParams",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "pattern": "^[a-z][a-z0-9]*(\\.[a-z][a-z0-9-]*)+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "titulo": {
+      "title": "Titulo",
+      "type": "string"
+    },
+    "descripcion": {
+      "title": "Descripcion",
+      "type": "string"
+    },
+    "patron": {
+      "title": "Patron",
+      "type": "string"
+    },
+    "entidad": {
+      "title": "Entidad",
+      "type": "string"
+    },
+    "requisitos": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Requisitos",
+      "type": "array"
+    },
+    "parametros": {
+      "$ref": "#/$defs/ViewParams"
+    },
+    "comando": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Comando"
+    },
+    "metricas": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Metricas",
+      "type": "array"
+    }
+  },
+  "required": [
+    "id",
+    "titulo",
+    "descripcion",
+    "patron",
+    "entidad"
+  ],
+  "title": "ViewSpec",
+  "type": "object"
+}

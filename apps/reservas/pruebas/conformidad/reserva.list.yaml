@@ -1,0 +1,7 @@
+vista: reserva.list
+requisitos: [REQ-003]
+aserciones:
+  - tiene_accion_primaria: { vista_destino: reserva.create }
+  - tiene_componente: { tipo: Table, columnas_incluyen: [titulo] }
+  - tiene_componente: { tipo: Empty }
+  - no_tiene_accion: { comando_tipo: eliminar }

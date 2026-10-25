@@ -1,0 +1,106 @@
+{
+  "$defs": {
+    "InterventionType": {
+      "enum": [
+        "H1",
+        "H2",
+        "H3",
+        "H4",
+        "H5",
+        "H6"
+      ],
+      "title": "InterventionType",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "id": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Id"
+    },
+    "app": {
+      "title": "App",
+      "type": "string"
+    },
+    "type": {
+      "$ref": "#/$defs/InterventionType"
+    },
+    "artifact": {
+      "title": "Artifact",
+      "type": "string"
+    },
+    "role": {
+      "enum": [
+        "funcional",
+        "diseno",
+        "desarrollador"
+      ],
+      "title": "Role",
+      "type": "string"
+    },
+    "reason": {
+      "title": "Reason",
+      "type": "string"
+    },
+    "evidence": {
+      "additionalProperties": true,
+      "title": "Evidence",
+      "type": "object"
+    },
+    "options": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Options",
+      "type": "array"
+    },
+    "status": {
+      "default": "abierta",
+      "enum": [
+        "abierta",
+        "aprobada",
+        "rechazada"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "motive": {
+      "default": "",
+      "title": "Motive",
+      "type": "string"
+    },
+    "created_at": {
+      "title": "Created At",
+      "type": "string"
+    },
+    "resolved_at": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Resolved At"
+    }
+  },
+  "required": [
+    "app",
+    "type",
+    "artifact",
+    "role",
+    "reason"
+  ],
+  "title": "Intervention",
+  "type": "object"
+}

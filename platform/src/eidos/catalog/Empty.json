@@ -1,0 +1,17 @@
+{
+  "$id": "eidos-catalog/1/Empty",
+  "title": "Empty",
+  "description": "Estado vacío con título, explicación y acciones opcionales.",
+  "x-eidos": { "version": "1.0.0", "container": false, "usage": ["visible: {\"not\": {\"path\": \"/count\"}} en listados"] },
+  "type": "object",
+  "required": ["id", "component", "title", "text"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "$ref": "#/$defs/Id" },
+    "component": { "const": "Empty" },
+    "title": { "type": "string" },
+    "text": { "type": "string" },
+    "actions": { "$ref": "#/$defs/Ids" },
+    "visible": { "$ref": "#/$defs/Condition" }
+  }
+}

@@ -1,0 +1,9 @@
+vista: user.list
+requisitos: [REQ-001, REQ-002]
+aserciones:
+  - tiene_accion_primaria: { vista_destino: user.create }
+  - tiene_componente: { tipo: Table, columnas_incluyen: [nombre, email, rol, activo] }
+  - tiene_componente: { tipo: Empty }
+  - tiene_componente: { tipo: Stat }
+  - no_tiene_accion: { comando_tipo: eliminar }
+  - max_nodos: 40

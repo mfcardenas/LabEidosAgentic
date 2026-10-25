@@ -1,0 +1,15 @@
+{
+  "name": "eidos-local",
+  "version": "0.1.0",
+  "description": "Prototipo de app sin pantallas programadas: agentes con gpt-oss en local generan cada pantalla a partir de specs.",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server/index.js",
+    "check-llm": "node scripts/check-llm.js",
+    "reset": "node --disable-warning=ExperimentalWarning scripts/reset.js",
+    "mock-llm": "node scripts/mock-llm.js",
+    "demo": "node scripts/demo.js"
+  }
+}

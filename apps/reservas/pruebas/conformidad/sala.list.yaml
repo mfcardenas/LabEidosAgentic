@@ -1,0 +1,6 @@
+vista: sala.list
+requisitos: [REQ-001]
+aserciones:
+  - tiene_accion_primaria: { vista_destino: sala.create }
+  - tiene_componente: { tipo: Table, columnas_incluyen: [nombre, planta, capacidad] }
+  - no_tiene_accion: { comando_tipo: eliminar }

@@ -1,0 +1,4 @@
+vista: reserva.edit
+requisitos: [REQ-005]
+aserciones:
+  - tiene_componente: { tipo: Form, comando: reserva.actualizar, campos_incluyen: [sala, inicio, fin, estado] }

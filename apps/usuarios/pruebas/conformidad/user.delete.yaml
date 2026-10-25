@@ -1,0 +1,7 @@
+vista: user.delete
+requisitos: [REQ-005]
+aserciones:
+  - tiene_accion: { comando: usuario.eliminar, variante: danger, en_cabecera: true }
+  - tiene_componente: { tipo: Alert }
+  - tiene_componente: { tipo: KeyValue }
+  - no_tiene_componente: { tipo: Form }

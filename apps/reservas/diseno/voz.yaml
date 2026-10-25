@@ -1,0 +1,5 @@
+tono: Claro y práctico, en español de España. Tuteo. Frases cortas, sin exclamaciones.
+reglas:
+  - Habla de salas, reservas y horarios. Nunca menciones pantallas, plantillas, agentes ni IA.
+  - Botones con verbo y objeto («Nueva reserva», «Guardar cambios», «Anular reserva»).
+  - Las fechas y horas siempre con su formato; nunca inventes horarios ni salas.

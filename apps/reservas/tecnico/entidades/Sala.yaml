@@ -1,0 +1,23 @@
+entidad: Sala
+etiqueta: sala
+plural: salas
+genero: f
+campoTitulo: nombre
+orden: nombre
+campos:
+  nombre:       { tipo: texto, etiqueta: Nombre, requerido: true, unico: true, min: 2, max: 60 }
+  planta:
+    tipo: enum
+    etiqueta: Planta
+    porDefecto: p1
+    valores:
+      - { valor: p0, etiqueta: Planta baja }
+      - { valor: p1, etiqueta: Primera }
+      - { valor: p2, etiqueta: Segunda }
+  capacidad:    { tipo: numero, etiqueta: Capacidad, requerido: true, min: 1, max: 200 }
+  equipamiento: { tipo: texto, etiqueta: Equipamiento, max: 120 }
+  activa:       { tipo: booleano, etiqueta: Disponibilidad, porDefecto: true, si: Disponible, no: Fuera de servicio }
+metricas:
+  total:       { tipo: conteo, etiqueta: Salas }
+  disponibles: { tipo: conteo, etiqueta: Disponibles, donde: { activa: true } }
+  porPlanta:   { tipo: reparto, etiqueta: Por planta, campo: planta }

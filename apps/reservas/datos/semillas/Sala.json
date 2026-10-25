@@ -1,0 +1,6 @@
+[
+  { "id": "s01", "nombre": "Atlántico", "planta": "p0", "capacidad": 12, "equipamiento": "Pantalla 75\", videoconferencia", "activa": true },
+  { "id": "s02", "nombre": "Mediterráneo", "planta": "p1", "capacidad": 6, "equipamiento": "Pantalla 55\"", "activa": true },
+  { "id": "s03", "nombre": "Cantábrico", "planta": "p1", "capacidad": 4, "equipamiento": "Pizarra", "activa": true },
+  { "id": "s04", "nombre": "Ártico", "planta": "p2", "capacidad": 20, "equipamiento": "Proyector, micrófonos", "activa": false }
+]

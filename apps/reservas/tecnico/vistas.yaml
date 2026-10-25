@@ -1,0 +1,76 @@
+- id: sala.list
+  titulo: Salas
+  descripcion: Salas de la oficina con su planta, capacidad y disponibilidad.
+  patron: collection
+  entidad: Sala
+  requisitos: [REQ-001]
+  parametros: { filtro: true }
+
+- id: sala.detail
+  titulo: Ficha de sala
+  descripcion: Datos y equipamiento de una sala.
+  patron: record
+  entidad: Sala
+  requisitos: [REQ-001]
+  parametros: { id: true }
+
+- id: sala.create
+  titulo: Nueva sala
+  descripcion: Alta de una sala en el catálogo.
+  patron: form
+  entidad: Sala
+  comando: sala.crear
+  requisitos: [REQ-002]
+  parametros: { prefill: true }
+
+- id: sala.edit
+  titulo: Editar sala
+  descripcion: Cambio de datos o disponibilidad de una sala.
+  patron: form
+  entidad: Sala
+  comando: sala.actualizar
+  requisitos: [REQ-002]
+  parametros: { id: true, prefill: true }
+
+- id: reserva.list
+  titulo: Reservas
+  descripcion: Reservas de salas ordenadas por inicio, con filtro por sala, estado o texto.
+  patron: collection
+  entidad: Reserva
+  requisitos: [REQ-003]
+  parametros: { filtro: true }
+
+- id: reserva.detail
+  titulo: Reserva
+  descripcion: Datos de una reserva con acceso a modificarla o anularla.
+  patron: record
+  entidad: Reserva
+  requisitos: [REQ-005]
+  parametros: { id: true }
+
+- id: reserva.create
+  titulo: Nueva reserva
+  descripcion: Reserva de una sala para un horario.
+  patron: form
+  entidad: Reserva
+  comando: reserva.crear
+  requisitos: [REQ-004]
+  parametros: { prefill: true }
+
+- id: reserva.edit
+  titulo: Modificar reserva
+  descripcion: Cambio de horario, sala o estado de una reserva.
+  patron: form
+  entidad: Reserva
+  comando: reserva.actualizar
+  requisitos: [REQ-005]
+  parametros: { id: true, prefill: true }
+
+- id: reserva.delete
+  titulo: Anular reserva
+  descripcion: Confirmación de la anulación de una reserva.
+  patron: confirm
+  entidad: Reserva
+  comando: reserva.eliminar
+  requisitos: [REQ-005]
+  parametros: { id: true }

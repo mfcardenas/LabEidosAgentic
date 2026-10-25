@@ -1,0 +1,17 @@
+{
+  "$id": "eidos-catalog/1/Button",
+  "title": "Button",
+  "description": "Botón que navega o ejecuta un comando.",
+  "x-eidos": { "version": "1.0.0", "container": false, "usage": ["Texto con verbo y objeto", "Una sola variante primary por pantalla", "danger solo para comandos de eliminación en pantallas de confirmación"] },
+  "type": "object",
+  "required": ["id", "component", "label", "variant", "action"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "$ref": "#/$defs/Id" },
+    "component": { "const": "Button" },
+    "label": { "type": "string" },
+    "variant": { "enum": ["primary", "secondary", "ghost", "danger"] },
+    "action": { "$ref": "#/$defs/Action" },
+    "visible": { "$ref": "#/$defs/Condition" }
+  }
+}

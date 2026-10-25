@@ -1,0 +1,16 @@
+{
+  "name": "eidos-client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Renderizador del catálogo Eidos y shell de aplicación (sin conocimiento de dominio).",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsc --noEmit && esbuild src/main.ts src/console.ts --bundle --format=esm --target=es2022 --outdir=dist && node scripts/copy-public.mjs",
+    "watch": "esbuild src/main.ts src/console.ts --bundle --format=esm --target=es2022 --outdir=dist --watch"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0",
+    "typescript": "^5.6.0"
+  }
+}

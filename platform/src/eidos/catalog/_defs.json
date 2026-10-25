@@ -1,0 +1,48 @@
+{
+  "$comment": "Definiciones comunes del catálogo eidos-catalog/1. Se inyectan en cada componente al cargar.",
+  "Id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$", "description": "Identificador único del componente en la pantalla (kebab-case)." },
+  "Ids": { "type": "array", "items": { "$ref": "#/$defs/Id" } },
+  "Path": {
+    "type": "object", "required": ["path"], "additionalProperties": false,
+    "properties": { "path": { "type": "string", "pattern": "^(/[A-Za-z0-9_]+)+$", "description": "JSON Pointer al modelo de datos de la vista, p. ej. /item/nombre" } }
+  },
+  "Template": {
+    "type": "object", "required": ["template"], "additionalProperties": false,
+    "properties": { "template": { "type": "string", "description": "Texto con rutas interpoladas: \"${/count} resultados\"" } }
+  },
+  "Value": {
+    "anyOf": [
+      { "type": "string" }, { "type": "number" }, { "type": "boolean" },
+      { "$ref": "#/$defs/Path" }, { "$ref": "#/$defs/Template" }
+    ]
+  },
+  "Condition": {
+    "anyOf": [
+      { "$ref": "#/$defs/Path" },
+      { "type": "object", "required": ["not"], "additionalProperties": false, "properties": { "not": { "$ref": "#/$defs/Path" } } }
+    ]
+  },
+  "Navigate": {
+    "type": "object", "required": ["function", "args"], "additionalProperties": false,
+    "properties": {
+      "function": { "const": "navigate" },
+      "args": {
+        "type": "object", "required": ["view"], "additionalProperties": false,
+        "properties": {
+          "view": { "type": "string" },
+          "params": { "type": "object", "additionalProperties": { "$ref": "#/$defs/Value" } }
+        }
+      }
+    }
+  },
+  "Command": {
+    "type": "object", "required": ["command"], "additionalProperties": false,
+    "properties": {
+      "command": { "type": "string" },
+      "input": { "type": "object", "additionalProperties": { "$ref": "#/$defs/Value" } }
+    }
+  },
+  "Action": { "anyOf": [{ "$ref": "#/$defs/Navigate" }, { "$ref": "#/$defs/Command" }] },
+  "Tone": { "enum": ["neutral", "accent", "info", "good", "warn", "bad"] },
+  "Format": { "enum": ["text", "person", "badge", "status", "date", "datetime", "email", "number"] }
+}

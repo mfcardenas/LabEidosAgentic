@@ -1,0 +1,54 @@
+{
+  "$defs": {
+    "Severity": {
+      "enum": [
+        "blocking",
+        "major",
+        "minor",
+        "autofixed"
+      ],
+      "title": "Severity",
+      "type": "string"
+    }
+  },
+  "properties": {
+    "code": {
+      "title": "Code",
+      "type": "string"
+    },
+    "severity": {
+      "$ref": "#/$defs/Severity"
+    },
+    "layer": {
+      "title": "Layer",
+      "type": "string"
+    },
+    "message": {
+      "title": "Message",
+      "type": "string"
+    },
+    "path": {
+      "default": "",
+      "title": "Path",
+      "type": "string"
+    },
+    "source": {
+      "default": "guard",
+      "title": "Source",
+      "type": "string"
+    },
+    "artifact": {
+      "default": "",
+      "title": "Artifact",
+      "type": "string"
+    }
+  },
+  "required": [
+    "code",
+    "severity",
+    "layer",
+    "message"
+  ],
+  "title": "Finding",
+  "type": "object"
+}

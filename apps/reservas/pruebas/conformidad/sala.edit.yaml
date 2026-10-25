@@ -1,0 +1,4 @@
+vista: sala.edit
+requisitos: [REQ-002]
+aserciones:
+  - tiene_componente: { tipo: Form, comando: sala.actualizar, campos_incluyen: [nombre, capacidad, activa] }

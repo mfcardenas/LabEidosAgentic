@@ -1,0 +1,16 @@
+{
+  "$id": "eidos-catalog/1/Text",
+  "title": "Text",
+  "description": "Párrafo de texto.",
+  "x-eidos": { "version": "1.0.0", "container": false, "usage": ["variant muted para notas y reglas"] },
+  "type": "object",
+  "required": ["id", "component", "value"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "$ref": "#/$defs/Id" },
+    "component": { "const": "Text" },
+    "value": { "$ref": "#/$defs/Value" },
+    "variant": { "enum": ["body", "lead", "muted"] },
+    "visible": { "$ref": "#/$defs/Condition" }
+  }
+}

@@ -1,0 +1,5 @@
+vista: user.create
+requisitos: [REQ-003]
+aserciones:
+  - tiene_componente: { tipo: Form, comando: usuario.crear, campos_incluyen: [nombre, email, departamento, rol, activo] }
+  - no_tiene_accion: { comando_tipo: eliminar }

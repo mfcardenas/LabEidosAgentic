@@ -1,0 +1,89 @@
+{
+  "$defs": {
+    "AfterCommand": {
+      "additionalProperties": false,
+      "properties": {
+        "vista": {
+          "title": "Vista",
+          "type": "string"
+        },
+        "con": {
+          "default": "id",
+          "enum": [
+            "id",
+            "ninguno"
+          ],
+          "title": "Con",
+          "type": "string"
+        }
+      },
+      "required": [
+        "vista"
+      ],
+      "title": "AfterCommand",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "tipo": {
+      "enum": [
+        "crear",
+        "actualizar",
+        "eliminar"
+      ],
+      "title": "Tipo",
+      "type": "string"
+    },
+    "entidad": {
+      "title": "Entidad",
+      "type": "string"
+    },
+    "etiqueta": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Etiqueta"
+    },
+    "requisitos": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Requisitos",
+      "type": "array"
+    },
+    "reglas": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Reglas",
+      "type": "array"
+    },
+    "confirmacion": {
+      "default": false,
+      "title": "Confirmacion",
+      "type": "boolean"
+    },
+    "despues": {
+      "$ref": "#/$defs/AfterCommand"
+    }
+  },
+  "required": [
+    "id",
+    "tipo",
+    "entidad",
+    "despues"
+  ],
+  "title": "CommandSpec",
+  "type": "object"
+}

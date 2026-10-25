@@ -1,0 +1,16 @@
+{
+  "$id": "eidos-catalog/1/Card",
+  "title": "Card",
+  "description": "Tarjeta con título que agrupa contenido relacionado.",
+  "x-eidos": { "version": "1.0.0", "container": true, "usage": ["Título corto y concreto", "Dos Card dentro de Columns forman dos columnas"] },
+  "type": "object",
+  "required": ["id", "component", "children"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "$ref": "#/$defs/Id" },
+    "component": { "const": "Card" },
+    "title": { "$ref": "#/$defs/Value" },
+    "children": { "$ref": "#/$defs/Ids" },
+    "visible": { "$ref": "#/$defs/Condition" }
+  }
+}

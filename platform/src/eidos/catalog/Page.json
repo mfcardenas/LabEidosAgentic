@@ -1,0 +1,18 @@
+{
+  "$id": "eidos-catalog/1/Page",
+  "title": "Page",
+  "description": "Raíz de toda pantalla: cabecera con título, subtítulo y acciones, y el contenido.",
+  "x-eidos": { "version": "1.0.0", "container": true, "root": true, "usage": ["Exactamente una Page por pantalla y es la raíz", "actions: ids de Button de la cabecera"] },
+  "type": "object",
+  "required": ["id", "component", "title", "children"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "$ref": "#/$defs/Id" },
+    "component": { "const": "Page" },
+    "title": { "$ref": "#/$defs/Value" },
+    "subtitle": { "$ref": "#/$defs/Value" },
+    "actions": { "$ref": "#/$defs/Ids" },
+    "children": { "$ref": "#/$defs/Ids" },
+    "visible": { "$ref": "#/$defs/Condition" }
+  }
+}

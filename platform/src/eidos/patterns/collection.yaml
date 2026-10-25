@@ -1,0 +1,9 @@
+nombre: collection
+descripcion: Listado de registros con resumen, filtro y acceso al detalle.
+datos: [items, count, filter, stats]
+receta:
+  - "Page con title \"{titulo}\", subtitle con template \"${{/count}} {plural}\" y, si existe vista de alta, un Button primary «{nuevo}» en actions que navega a ella."
+  - "Columns con 2-4 Stat de las métricas de conteo de /stats (value {{\"path\": \"/stats/<métrica>\"}}); usa hint cuando aporte contexto."
+  - "Alert tone info visible con {{\"path\": \"/filter/active\"}} y text {{\"path\": \"/filter/label\"}}, seguido de un Button ghost «Quitar filtro» con el mismo visible que navega a esta vista sin params."
+  - "Card \"{Plural}\" con una Table visible con {{\"path\": \"/count\"}}: rows {{\"path\": \"/items\"}}, primera columna el campo título con format person y después los campos más útiles; rowAction navega al detalle con params id {{\"path\": \"/row/id\"}}."
+  - "Empty visible con {{\"not\": {{\"path\": \"/count\"}}}}, con un título y un texto que digan qué probar."

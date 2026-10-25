@@ -1,0 +1,6 @@
+vista: sala.detail
+requisitos: [REQ-001]
+aserciones:
+  - titulo_enlazado: { path: /item/nombre }
+  - tiene_accion: { vista_destino: sala.edit, en_cabecera: true }
+  - tiene_componente: { tipo: KeyValue }

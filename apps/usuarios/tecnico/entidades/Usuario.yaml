@@ -1,0 +1,27 @@
+entidad: Usuario
+etiqueta: usuario
+plural: usuarios
+genero: m
+campoTitulo: nombre
+orden: nombre
+campos:
+  nombre:       { tipo: texto, etiqueta: Nombre, requerido: true, min: 2, max: 80 }
+  email:        { tipo: email, etiqueta: Email, requerido: true, unico: true, minusculas: true, max: 120, sensible: true }
+  departamento: { tipo: texto, etiqueta: Departamento, max: 40 }
+  rol:
+    tipo: enum
+    etiqueta: Rol
+    porDefecto: lector
+    valores:
+      - { valor: admin, etiqueta: Admin, tono: accent }
+      - { valor: editor, etiqueta: Editor, tono: info }
+      - { valor: lector, etiqueta: Lector, tono: neutral }
+  activo:       { tipo: booleano, etiqueta: Estado, porDefecto: true, si: Activo, no: Inactivo }
+  alta:         { tipo: fecha, etiqueta: Alta, auto: alCrear, soloLectura: true }
+metricas:
+  total:     { tipo: conteo, etiqueta: Total }
+  activos:   { tipo: conteo, etiqueta: Activos, donde: { activo: true } }
+  inactivos: { tipo: conteo, etiqueta: Inactivos, donde: { activo: false } }
+  altas30:   { tipo: recientes, etiqueta: Altas recientes, campo: alta, dias: 30 }
+  porRol:    { tipo: reparto, etiqueta: Por rol, campo: rol }
+reglas: [ultimoAdminActivo]

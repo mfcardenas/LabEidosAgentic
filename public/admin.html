@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Eidos · Administración</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/admin.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><b>Eidos</b><span>administración</span></div>
+    <a class="tbtn" href="/" style="margin-left:auto">Ir a la app</a>
+  </div>
+</header>
+
+<main class="wrap adm">
+  <section>
+    <h2>Modelo</h2>
+    <p class="lede">El Intérprete y el Compositor usan el modelo activo. El cambio es inmediato y se recuerda al reiniciar.</p>
+    <div class="profiles" id="profiles"></div>
+  </section>
+
+  <section>
+    <div class="adm-head">
+      <h2>Pantallas generadas</h2>
+      <span class="meta" id="specInfo"></span>
+      <button class="tbtn" id="forgetAll" type="button">Olvidar todas</button>
+    </div>
+    <p class="lede">Cada pantalla se genera una vez por intent y versión de las specs, y se reutiliza con datos nuevos. Si olvidas una, se vuelve a generar la próxima vez que alguien la abra.</p>
+    <div class="screens">
+      <ul class="screen-list" id="screenList"></ul>
+      <div class="screen-detail" id="screenDetail"><p class="meta">Elige una pantalla para verla.</p></div>
+    </div>
+  </section>
+</main>
+<script src="/admin.js"></script>
+</body>
+</html>

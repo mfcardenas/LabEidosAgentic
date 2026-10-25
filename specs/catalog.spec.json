@@ -1,0 +1,23 @@
+{
+  "enlaces": "Cualquier texto puede llevar {{ruta}} (p. ej. \"{{item.nombre}}\" o \"Hay {{count}} personas\"). Para pasar un valor completo (un array, un objeto) usa {\"$bind\":\"ruta\"}. Dentro de una fila de tabla, la fila es {{row.campo}}. La propiedad when:\"ruta\" o when:\"!ruta\" muestra u oculta cualquier nodo.",
+  "componentes": {
+    "Screen": { "props": { "title": "texto", "subtitle": "texto?", "actions": "Button[]? (cabecera)", "children": "nodos" }, "nota": "Raíz obligatoria." },
+    "Section": { "props": { "title": "texto?", "children": "nodos" }, "nota": "Tarjeta con título que agrupa contenido relacionado. Dos Section dentro de un Row forman dos columnas." },
+    "Row": { "props": { "children": "nodos" }, "nota": "Fila que se apila en pantallas estrechas; ideal para Stat o para dos Section." },
+    "Text": { "props": { "value": "texto", "variant": "lead | body | muted | label" } },
+    "Stat": { "props": { "label": "texto", "value": "texto o número", "hint": "texto?", "tone": "neutral | good | warn | bad" } },
+    "Table": { "props": { "rows": "{\"$bind\":\"items\"}", "columns": "[{field, label, format: text | person | badge | status | date | email}]", "rowAction": "acción? (usa {{row.id}})", "empty": "texto?" }, "nota": "person muestra iniciales y nombre: úsalo en la columna del campo título." },
+    "KeyValue": { "props": { "items": "[{label, value, format?}] (value como \"{{item.campo}}\"; format: text | badge | status | date | email)" } },
+    "Badge": { "props": { "value": "texto", "tone": "neutral | accent | info | good | warn | bad" } },
+    "BarList": { "props": { "title": "texto?", "items": "{\"$bind\":\"stats.porRol\"} → [{label, value}]" } },
+    "Form": { "props": { "fields": "[{field, label?, help?}] con campos de la entidad", "submit": "{label}", "cancel": "{label, action}?" }, "nota": "Solo en pantallas de alta y edición. El runtime pone valores, tipos de input y guardado." },
+    "Button": { "props": { "label": "texto", "variant": "primary | secondary | danger | ghost", "action": "acción" } },
+    "Alert": { "props": { "tone": "info | warn | danger | good", "title": "texto?", "text": "texto" } },
+    "Empty": { "props": { "title": "texto", "text": "texto", "button": "Button?" } }
+  },
+  "acciones": {
+    "navigate": "{\"type\":\"navigate\",\"intent\":\"…\",\"params\":{…}} — p. ej. {\"type\":\"navigate\",\"intent\":\"user.detail\",\"params\":{\"id\":\"{{row.id}}\"}}",
+    "delete": "{\"type\":\"delete\",\"id\":\"{{item.id}}\"} — solo en pantallas de baja",
+    "ask": "{\"type\":\"ask\",\"text\":\"…\"} — envía una petición al Intérprete, como si la escribiera la persona"
+  }
+}

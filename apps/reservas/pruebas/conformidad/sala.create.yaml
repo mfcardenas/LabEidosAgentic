@@ -1,0 +1,4 @@
+vista: sala.create
+requisitos: [REQ-002]
+aserciones:
+  - tiene_componente: { tipo: Form, comando: sala.crear, campos_incluyen: [nombre, planta, capacidad, equipamiento, activa] }

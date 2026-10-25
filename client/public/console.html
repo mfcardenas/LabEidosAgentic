@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Eidos · Consola de supervisión</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/console.css">
+</head>
+<body class="console">
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><b>Eidos</b><span>consola de supervisión</span></div>
+    <select id="appSelect" class="tbtn" aria-label="Aplicación"></select>
+    <a class="tbtn" id="appLink" href="/" style="margin-left:auto">Abrir la aplicación</a>
+  </div>
+</header>
+<main class="wrap con">
+  <section>
+    <div class="con-head"><h2>Modelo</h2><span class="meta">Perfil que usan los agentes del plano de control y la generación a demanda.</span></div>
+    <div class="cards" id="profiles"></div>
+  </section>
+
+  <section>
+    <div class="con-head">
+      <h2>Aplicación</h2><span class="meta" id="appInfo"></span>
+      <button class="g-btn" id="buildBtn" type="button">Construir (lote)</button>
+    </div>
+    <p class="note" id="buildNote" hidden></p>
+  </section>
+
+  <section>
+    <div class="con-head"><h2>Intervenciones abiertas</h2><span class="meta">El sistema se detiene aquí y espera una decisión registrada.</span></div>
+    <div class="cards" id="interventions"></div>
+  </section>
+
+  <section>
+    <div class="con-head"><h2>Pantallas</h2><span class="meta">Artefactos con su estado, riesgo y ruta. Elige uno para revisarlo con datos reales.</span></div>
+    <div class="split-view">
+      <ul class="art-list" id="artifacts"></ul>
+      <div class="art-detail" id="detail"><p class="meta">Elige una pantalla.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="con-head"><h2>Trazabilidad</h2><span class="meta">Requisito → implementación → pruebas → pantallas (último informe de conformidad).</span></div>
+    <div id="trace"></div>
+  </section>
+
+  <section>
+    <div class="con-head"><h2>Auditoría</h2><span class="meta">Últimas decisiones de personas y del sistema.</span></div>
+    <ol class="audit" id="audit"></ol>
+  </section>
+</main>
+<script type="module" src="/console.js"></script>
+</body>
+</html>
